@@ -1,11 +1,13 @@
 import { FC } from 'react'
 
 import { AssetRenderOne } from './Asset'
+import MagicSphere from './MagicSphere'
 
 
 const ScrolledScene: FC = () => {
   return (
     <>
+      <MagicSphere />
       <AssetRenderOne
         asset={{
           preload: true,
