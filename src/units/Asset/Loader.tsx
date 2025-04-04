@@ -11,6 +11,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader'
 
 import { AssetData, AssetRenderOneData, AssetTransforms, GLTF_Type } from './Types'
+import generatePath from '../../utils/generatePath'
 // import { getTransformMatrix } from '../../utils/getTransforms'
 
 
@@ -64,7 +65,7 @@ export class AssetLoader {
       texture!.wrapT = THREE.RepeatWrapping
       texture!.repeat.set(1, 1)
     }
-    const envMap = useLoader(RGBELoader, envMapTexturePath)
+    const envMap = useLoader(RGBELoader, generatePath('/hdri/envMap.hdr'))
     envMap.mapping = THREE.EquirectangularReflectionMapping
 
     const applyToMaterial = (material: MeshPhongMaterial) => {
@@ -78,14 +79,14 @@ export class AssetLoader {
       material.needsUpdate = true
     }
 
-    fbxWithMaterial.traverse((object: Mesh) => {
+    fbxWithMaterial.traverse(((object: Mesh) => {
       if (object.isMesh) {
         if (Array.isArray(object.material))
           object.material.forEach(material => applyToMaterial(material as MeshPhongMaterial))
         else
           applyToMaterial(object.material as MeshPhongMaterial)
       }
-    })
+    }) as any)
 
     return fbxWithMaterial
   }
@@ -101,7 +102,7 @@ export class AssetLoader {
       material.needsUpdate = true
     }
 
-    gltfWithMaterial.traverse((object: Mesh) => {
+    gltfWithMaterial.traverse(((object: Mesh) => {
       if (object.isMesh) {
         if (Array.isArray(object.material)) {
           object.material.forEach(material => applyToMaterial(material as MeshStandardMaterial))
@@ -109,7 +110,7 @@ export class AssetLoader {
         else
           applyToMaterial(object.material as MeshStandardMaterial)
       }
-    })
+    }) as any)
 
     return gltfWithMaterial
   }
@@ -117,7 +118,7 @@ export class AssetLoader {
   public static changeMaterialGLTF = (gltf: Group, newMaterial: THREE.MeshStandardMaterial): Group => {
     const gltfWithMaterial = gltf.clone()
 
-    gltfWithMaterial.traverse((object: Mesh) => {
+    gltfWithMaterial.traverse(((object: Mesh) => {
       if (object.isMesh) {
         if (Array.isArray(object.material)) {
           object.material = object.material.map(() => newMaterial)
@@ -125,7 +126,7 @@ export class AssetLoader {
         else
           object.material = newMaterial
       }
-    })
+    }) as any)
 
     return gltfWithMaterial
   }

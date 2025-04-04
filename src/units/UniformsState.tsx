@@ -1,7 +1,10 @@
 import { FC, useEffect } from 'react'
 import { debounce } from 'lodash'
 
-import { notifyThreeRef, useSubscribeThreeRef } from '../utils/ThreeRef'
+import {
+  // notifyThreeRef,
+  useSubscribeThreeRef
+} from '../utils/ThreeRef'
 import {
   scrollPos,
 } from './Uniforms'

@@ -1,9 +1,10 @@
-import { FC, useEffect, useRef } from 'react'
+import { FC, useRef } from 'react'
 
 import * as THREE from 'three'
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader'
 import { useFrame, useThree, useLoader } from '@react-three/fiber'
 import { Sphere } from '@react-three/drei'
+import generatePath from '../utils/generatePath'
 
 
 const MagicSphere: FC = () => {
@@ -19,7 +20,7 @@ const MagicSphere: FC = () => {
   // const texture = new THREE.VideoTexture( (video as HTMLVideoElement)! )
   // texture.colorSpace = THREE.SRGBColorSpace
 
-  const envMap = useLoader(RGBELoader, './hdri/envMap.hdr')
+  const envMap = useLoader(RGBELoader, generatePath('/hdri/envMap.hdr'))
   // envMap.mapping = THREE.EquirectangularRefractionMapping
 
   useFrame(() => {

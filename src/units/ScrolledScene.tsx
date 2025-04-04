@@ -2,7 +2,8 @@ import { FC } from 'react'
 
 import { AssetRenderOne } from './Asset'
 import MagicSphere from './MagicSphere'
-import Particles from './Particles'
+import generatePath from '../utils/generatePath'
+// import Particles from './Particles'
 
 
 const ScrolledScene: FC = () => {
@@ -13,7 +14,7 @@ const ScrolledScene: FC = () => {
       <AssetRenderOne
         asset={{
           preload: true,
-          model_path: '/models/logo.glb'
+          model_path: generatePath('/models/logo.glb')
         }}
         scale={[5, 5, 5]}
         position={[0, -10, 0]}

@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react'
 
 import * as THREE from 'three'
-import { useFrame, useThree } from '@react-three/fiber'
+import { useFrame } from '@react-three/fiber'
 import { OrbitControls, useScroll } from '@react-three/drei'
 import type { OrbitControls as OrbitControlsType } from 'three-stdlib'
 
@@ -11,8 +11,8 @@ const CAMERA_INITIAL_POSITION = new THREE.Vector3(0, -5, 17)
 const CAMERA_INITIAL_TARGET = new THREE.Vector3(0, 0, 0)
 const CAMERA_MAX_POLAR_ANGLE = Math.PI / 2 + .01
 
-const moveVector = new THREE.Vector3()
-const pointerMoveVector = new THREE.Vector3()
+// const moveVector = new THREE.Vector3()
+// const pointerMoveVector = new THREE.Vector3()
 const positionToTarget = new THREE.Vector3()
 
 
@@ -37,7 +37,7 @@ export const CameraControls: React.FC = () => {
   const data = useScroll()
     
   // Управление камерой
-  useFrame((_threeState, delta) => {
+  useFrame((_threeState, _delta) => {
     const controls = controlsRef.current
 
     if (!controls)
@@ -45,13 +45,13 @@ export const CameraControls: React.FC = () => {
 
     const { target } = controls
     const { position } = controls.object
-    const cameraForwardVector = getCameraForwardVector(position, target)
-    const yRotation = Math.acos(cameraForwardVector.z) * Math.sign(cameraForwardVector.x) - Math.PI
+    // const cameraForwardVector = getCameraForwardVector(position, target)
+    // const yRotation = Math.acos(cameraForwardVector.z) * Math.sign(cameraForwardVector.x) - Math.PI
 
     positionToTarget
       .copy(target)
       .sub(position)
-    const zoom = positionToTarget.length()
+    // const zoom = positionToTarget.length()
 
     target.set(
       0,
@@ -100,19 +100,19 @@ export const CameraControls: React.FC = () => {
 }
 
 
-const COORD_DELTA = 0.0001
-const cameraForwardTmpVector = new THREE.Vector3()
+// const COORD_DELTA = 0.0001
+// const cameraForwardTmpVector = new THREE.Vector3()
 
-const getCameraForwardVector = (position: THREE.Vector3, target: THREE.Vector3) => {
-  cameraForwardTmpVector.copy(target).sub(position)
-  // Для правильной работы Math.acos координата не должна равняться 0. Лучше 0.000001
-  cameraForwardTmpVector
-    .set(
-      cameraForwardTmpVector.x === 0 ? COORD_DELTA : cameraForwardTmpVector.x,
-      0,
-      cameraForwardTmpVector.z === 0 ? COORD_DELTA : cameraForwardTmpVector.z
-    )
-    .normalize()
+// const getCameraForwardVector = (position: THREE.Vector3, target: THREE.Vector3) => {
+//   cameraForwardTmpVector.copy(target).sub(position)
+//   // Для правильной работы Math.acos координата не должна равняться 0. Лучше 0.000001
+//   cameraForwardTmpVector
+//     .set(
+//       cameraForwardTmpVector.x === 0 ? COORD_DELTA : cameraForwardTmpVector.x,
+//       0,
+//       cameraForwardTmpVector.z === 0 ? COORD_DELTA : cameraForwardTmpVector.z
+//     )
+//     .normalize()
 
-  return cameraForwardTmpVector
-}
+//   return cameraForwardTmpVector
+// }
