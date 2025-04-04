@@ -1,2 +1,28 @@
 *
+  padding: 0
+  margin: 0
   font-size: 300px
+
+body
+  background-color: white
+  .App
+    width: 100vw
+    height: 100vh
+    min-height: 370px
+    position: relative
+    .Scene
+      @extend .abs-cover
+    .scroll-container
+      width: 100%
+      height: 100%
+      overflow-y: scroll
+      .scroll-area
+        width: 100%
+        height: 300%
+
+.abs-cover
+  position: absolute
+  width: 100%
+  height: 100%
+  top: 0
+  left: 0

@@ -1,14 +1,17 @@
-import React from 'react'
+import { FC } from 'react'
+
+import Scene from './components/Scene'
 
 import './assets/style.sass'
 
 
-function App() {
+const App: FC = () => {
   return (
-    <>
-      aaa
-    </>
+    <div className='App'>
+      <Scene />
+    </div>
   )
 }
+
 
 export default App
