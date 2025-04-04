@@ -2,12 +2,14 @@ import { FC } from 'react'
 
 import { AssetRenderOne } from './Asset'
 import MagicSphere from './MagicSphere'
+import Particles from './Particles'
 
 
 const ScrolledScene: FC = () => {
   return (
     <>
       <MagicSphere />
+      {/* <Particles count={100} /> */}
       <AssetRenderOne
         asset={{
           preload: true,
