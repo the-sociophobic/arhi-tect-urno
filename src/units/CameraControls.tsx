@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react'
 
 import * as THREE from 'three'
-import { useFrame } from '@react-three/fiber'
+import { useFrame, useThree } from '@react-three/fiber'
 import { OrbitControls, useScroll } from '@react-three/drei'
 import type { OrbitControls as OrbitControlsType } from 'three-stdlib'
 
@@ -93,6 +93,8 @@ export const CameraControls: React.FC = () => {
     controls.update()
   })
   // Конец управления камерой
+
+  // const {camera} = useThree()
 
   return (
     <OrbitControls ref={controlsRef as any} />

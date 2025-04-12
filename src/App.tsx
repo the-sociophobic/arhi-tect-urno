@@ -8,9 +8,17 @@ import './assets/style.sass'
 const App: FC = () => {
   return (
     <div className='App'>
-      {/* <div className='video-container'>
-        <video src='./arhi-tect-urno/hdri/test.mp4' id='video' />
-      </div> */}
+      <div className='video-container'>
+        <video
+          id='video'
+          loop
+          muted
+          crossOrigin='anonymous'
+          // playsinline
+        >
+          <source src='./arhi-tect-urno/hdri/test.mov' />
+        </video>
+      </div>
       <Scene />
     </div>
   )

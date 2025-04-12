@@ -12,6 +12,7 @@ import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader'
 
 import { AssetData, AssetRenderOneData, AssetTransforms, GLTF_Type } from './Types'
 import generatePath from '../../utils/generatePath'
+import envMapSource from '../../utils/envMapSource'
 // import { getTransformMatrix } from '../../utils/getTransforms'
 
 
@@ -65,7 +66,7 @@ export class AssetLoader {
       texture!.wrapT = THREE.RepeatWrapping
       texture!.repeat.set(1, 1)
     }
-    const envMap = useLoader(RGBELoader, generatePath('/hdri/envMap.hdr'))
+    const envMap = useLoader(RGBELoader, generatePath(envMapSource))
     envMap.mapping = THREE.EquirectangularReflectionMapping
 
     const applyToMaterial = (material: MeshPhongMaterial) => {
