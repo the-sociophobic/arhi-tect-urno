@@ -3,6 +3,7 @@ import { FC } from 'react'
 import Scene from './components/Scene'
 
 import './assets/style.sass'
+import generatePath from './utils/generatePath'
 
 
 const App: FC = () => {
@@ -16,7 +17,8 @@ const App: FC = () => {
           crossOrigin='anonymous'
           // playsinline
         >
-          <source src='./arhi-tect-urno/hdri/test.mov' />
+          {/* <source src='./arhi-tect-urno/hdri/test.mov' /> */}
+          <source src={generatePath('/hdri/test.mov')} />
         </video>
       </div>
       <Scene />
