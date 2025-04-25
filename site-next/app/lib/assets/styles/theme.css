@@ -1,0 +1,25 @@
+:root {
+  color-scheme: light dark;
+
+  --main-background: white;
+  --main-text: black;
+}
+
+
+/* @media (prefers-color-scheme: light) {
+  :root {
+    .light-theme-only {
+      display: none;
+    }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    .dark-theme-only {
+      display: none;
+    }
+    --main-background: black;
+    --main-text: white;
+  }
+} */
