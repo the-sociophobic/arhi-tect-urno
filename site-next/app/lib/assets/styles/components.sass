@@ -1,0 +1,47 @@
+@import './vars.sass'
+@import './modificators.sass'
+
+
+.Main__h1--gray
+  color: #414141
+.Main__h1--yellow
+  color: #ACAA75
+
+
+.Architects__Three-container
+  height: calc(100vh - 120px)
+  margin-top: -90px
+  position: relative
+.Architects__Three
+  @extend .abs-cover
+  z-index: 1000
+
+.ArchitectCard
+  position: relative
+  margin-bottom: 50px
+  filter: grayscale(1)
+  transition: filter $menu-transition
+  &:hover
+    filter: grayscale(.45)    
+  &__Image-container
+    width: 100%
+    padding-top: 128.52%
+    position: relative
+    margin-bottom: 20px
+  &__Image
+    @extend .abs-cover
+    position: absolute !important
+    border-radius: 10px
+  &__id
+    position: absolute
+    color: white
+    font-size: 12px
+    top: 12px
+    left: 12px
+  &__name
+    font-size: 18px
+    margin-bottom: 5px
+    text-transform: uppercase
+  &__company
+    font-size: 14px
+    color: #AFAFAF

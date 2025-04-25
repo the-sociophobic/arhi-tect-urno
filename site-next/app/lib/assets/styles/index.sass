@@ -1,6 +1,7 @@
 @import './theme.css'
 @import './vars.sass'
 @import './modificators.sass'
+@import './components.sass'
 
 @import '~bootstrap/scss/bootstrap.scss'
 
@@ -24,6 +25,19 @@ body
     min-height: 370px
     @extend .d-flex
     @extend .flex-column
+    .Header
+      &__link
+        font-size: 13.62px
+        line-height: 15.7px
+        color: #D3D3D3
+        &--active
+          color: #ACAA75
+      &__h1
+        color: #E6E6E6
+        font-size: 140px
+        line-height: 140px
+        white-space: nowrap
+
     .content
       position: relative
       width: 100vw
