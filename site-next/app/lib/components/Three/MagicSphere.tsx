@@ -3,7 +3,7 @@
 import { FC, useEffect, useRef } from 'react'
 
 import * as THREE from 'three'
-import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader'
+import { RGBELoader } from 'three-stdlib'
 import { useFrame, useThree, useLoader } from '@react-three/fiber'
 import { Environment, Sphere } from '@react-three/drei'
 
