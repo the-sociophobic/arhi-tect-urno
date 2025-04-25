@@ -30,7 +30,7 @@ const Page = () => {
       </div>
       <div className='abs-cover'>
         <ThreeScene>
-          <Main router={router} />
+          <Main />
         </ThreeScene>
       </div>
     </div>

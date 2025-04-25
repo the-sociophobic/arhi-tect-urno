@@ -1,9 +1,9 @@
 'use client'
 
-import { NextRouter, useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import { FC, useRef, useState } from 'react'
 import * as THREE from 'three'
-import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader'
+import { RGBELoader } from 'three-stdlib'
 import { useFrame, useLoader, useThree } from '@react-three/fiber'
 import { Box, Sphere, Environment } from '@react-three/drei'
 
@@ -24,13 +24,15 @@ const TIME_OFFSET = .7
 
 
 export type MainProps = {
-  router: NextRouter
+  // router: NextRouter
 }
 
 
 const Main: FC<MainProps> = ({
-  router
+  // router
 }) => {
+  const router = useRouter()
+  
   const groupRef = useRef<THREE.Group>(null)
   const texture = useLoader(THREE.TextureLoader, texturePath)
   texture.wrapS = THREE.RepeatWrapping

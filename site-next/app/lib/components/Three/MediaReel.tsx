@@ -3,7 +3,7 @@
 import { useRouter } from 'next/router'
 import { FC, useRef, useState } from 'react'
 import * as THREE from 'three'
-import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader'
+import { RGBELoader } from 'three-stdlib'
 import { useFrame, useLoader } from '@react-three/fiber'
 import { Box, Environment } from '@react-three/drei'
 
