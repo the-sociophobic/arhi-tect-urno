@@ -45,3 +45,20 @@
   &__company
     font-size: 14px
     color: #AFAFAF
+
+
+.About
+  position: relative
+  &__background
+    position: fixed
+    top: 0
+    left: 0
+    width: 100vw
+    height: 100vh
+    z-index: -1
+    overflow: hidden
+    transition: opacity 1s
+    opacity: 1
+    filter: grayscale(1)
+    &--hidden
+      opacity: 0   

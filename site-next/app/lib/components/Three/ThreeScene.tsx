@@ -7,17 +7,19 @@ import { Canvas } from '@react-three/fiber'
 export type ThreeSceneProps = {
   children: ReactNode
   className?: string
+  orthographic?: boolean
 }
 
 
 const ThreeScene: React.FC<ThreeSceneProps> = ({
   children,
-  className
+  className,
+  orthographic=true
 }) => {
   return (
     <Canvas
-      orthographic
-      camera={{ zoom: 115, position: [0, 0, 10] }}
+      orthographic={orthographic}
+      camera={orthographic ? { zoom: 115, position: [0, 0, 10] } : {}}
       className={className}
     >
       <Suspense>
