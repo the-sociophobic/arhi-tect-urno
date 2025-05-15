@@ -8,10 +8,10 @@ import { useFrame, useLoader, useThree } from '@react-three/fiber'
 import { Box, Sphere, Environment } from '@react-three/drei'
 
 import useMousePointerOnHover from '../../hooks/useMousePointerOnHover'
+import generatePath from '../../utils/generatePath'
 
-const generatePath = (path: string) => path
-const envMapSource = '/three/studio_1k_bw.hdr'
-const texturePath = '/three/architect_main.png'
+const envMapSource = generatePath('/three/studio_1k_bw.hdr')
+const texturePath = generatePath('/three/architect_main.png')
 
 const NUMBER_OF_MEDIA = 11
 const NUMBER_OF_MEDIA_2 = 4
@@ -23,14 +23,7 @@ const OPACITY_NUMBER_MAX = NUMBER_OF_MEDIA * NUMBER_OF_MEDIA_2
 const TIME_OFFSET = .7
 
 
-export type MainProps = {
-  // router: NextRouter
-}
-
-
-const Main: FC<MainProps> = ({
-  // router
-}) => {
+const Main: FC = () => {
   const router = useRouter()
   
   const groupRef = useRef<THREE.Group>(null)
@@ -40,7 +33,7 @@ const Main: FC<MainProps> = ({
   texture.repeat.set(1.5, 1.5)
   texture.offset.set(-.015, .5)
 
-  const envMap = useLoader(RGBELoader, generatePath(envMapSource))
+  const envMap = useLoader(RGBELoader, envMapSource)
   const [time, setTime] = useState(0)
 
   useFrame(threeState => {
@@ -73,7 +66,7 @@ const Main: FC<MainProps> = ({
 
   return (
     <>
-      <Environment files={generatePath(envMapSource)} />
+      <Environment files={envMapSource} />
       <ambientLight intensity={3} />
       <group
       // scale={[.7, .7, .7]}

@@ -8,10 +8,10 @@ import { useFrame, useLoader } from '@react-three/fiber'
 import { Box, Environment } from '@react-three/drei'
 
 import useMousePointerOnHover from '../../hooks/useMousePointerOnHover'
+import generatePath from '../../utils/generatePath'
 
-const generatePath = (path: string) => path
-const envMapSource = '/three/studio_1k_bw.hdr'
-const texturePath = '/three/architect_main.png'
+const envMapSource = generatePath('/three/studio_1k_bw.hdr')
+const texturePath = generatePath('/three/architect_main.png')
 const NUMBER_OF_MEDIA = 29
 
 
@@ -23,7 +23,7 @@ const MediaReel: FC = () => {
   texture.repeat.set(1.5, 1.5)
   texture.offset.set(-.015, .5)
 
-  const envMap = useLoader(RGBELoader, generatePath(envMapSource))
+  const envMap = useLoader(RGBELoader, envMapSource)
 
   useFrame(threeState => {
     if (groupRef.current) {
@@ -48,7 +48,7 @@ const MediaReel: FC = () => {
 
   return (
     <>
-      <Environment files={generatePath(envMapSource)} />
+      <Environment files={envMapSource} />
       <ambientLight intensity={3} />
       <group
         scale={[.7, .7, .7]}

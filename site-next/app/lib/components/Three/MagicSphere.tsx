@@ -6,11 +6,11 @@ import * as THREE from 'three'
 import { RGBELoader } from 'three-stdlib'
 import { useFrame, useThree, useLoader } from '@react-three/fiber'
 import { Environment, Sphere } from '@react-three/drei'
+import generatePath from '../../utils/generatePath'
 
 
-const generatePath = (path: string) => path
-const envMapSource = '/three/studio_1k_bw.hdr'
-const texturePath = '/three/architect_main.png'
+const envMapSource = generatePath('/three/studio_1k_bw.hdr')
+const texturePath = generatePath('/three/architect_main.png')
 
 const MagicSphere: FC = () => {
 
@@ -32,7 +32,7 @@ const MagicSphere: FC = () => {
   texture.repeat.set(1.5, 1.5)
   texture.offset.set(-.015, .5)
 
-  const envMap = useLoader(RGBELoader, generatePath(envMapSource))
+  const envMap = useLoader(RGBELoader, envMapSource)
   // envMap.mapping = THREE.EquirectangularRefractionMapping
 
   useFrame(threeState => {
@@ -53,7 +53,7 @@ const MagicSphere: FC = () => {
 
   return (
     <>
-      <Environment files={generatePath(envMapSource)} />
+      <Environment files={envMapSource} />
       <ambientLight intensity={3} />
       <group scale={[.9, .9, .9]}>
         <Sphere
