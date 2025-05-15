@@ -1,0 +1,64 @@
+@import './theme.css'
+@import './vars.sass'
+@import './modificators.sass'
+@import './components.sass'
+
+@import '~bootstrap/scss/bootstrap.scss'
+
+#root
+  min-height: 100vh
+
+*
+  font-display: auto
+  font-family: var(--font-geologica)
+  color: $main-text
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+  -webkit-font-smoothing: antialiased
+
+body
+  background-color: $main-background
+  .App
+    width: 100vw
+    height: 100vh
+    min-height: 370px
+    @extend .d-flex
+    @extend .flex-column
+    .Header
+      &__link
+        font-size: 13.62px
+        line-height: 15.7px
+        color: #D3D3D3
+        &--active
+          color: #ACAA75
+      &__h1
+        color: #E6E6E6
+        font-size: 140px
+        line-height: 140px
+        white-space: nowrap
+
+    .content
+      position: relative
+      width: 100vw
+      overflow-x: hidden
+      // padding-top: 30px
+      @extend .d-flex
+      @extend .flex-column
+      @extend .flex-grow-1
+      @extend .justify-content-start
+      @extend .align-items-stretch
+      .container,
+      .container-2
+        @extend .d-flex
+        @extend .flex-column
+        @extend .flex-grow-1
+      .container,
+      .container-2
+        padding-left: 15px
+        padding-right: 15px
+      .container-2
+        width: 100%
+
+a
+  text-decoration: none !important

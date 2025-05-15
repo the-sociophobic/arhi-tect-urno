@@ -1,0 +1,19 @@
+.ImageCropped
+  transition: opacity .2s ease-in-out
+  position: relative
+  overflow: hidden
+  &--hidden
+    opacity: 0
+  &__Image
+    &--portrait,
+    &--landscape
+      position: absolute
+      top: 50%
+      left: 50%
+      transform: translate(-50%, -50%)
+    &--portrait
+      width: 100%
+      height: auto
+    &--landscape
+      width: auto
+      height: 100%
