@@ -2,7 +2,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
-  basePath: '/arhi-tect-urno'
+  // basePath: '/arhi-tect-urno'
+  // output: 'export'
 };
 
 export default nextConfig;
