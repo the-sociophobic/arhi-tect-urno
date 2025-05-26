@@ -1,25 +1,24 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import { FC } from 'react'
 
-import { ArchitectType } from '../lib/types/default.types'
 import ImageCropped from '../lib/components/ImageCropped'
+import { ContentfulArchitectType } from '../lib/types/contentful.type'
 
 
-const ArchitectCard: FC<ArchitectType> = ({
+const ArchitectCard: FC<ContentfulArchitectType> = ({
   id,
   name,
-  photo,
-  href,
+  avatar,
+  url,
   company
 }) => {
   return (
     <div className='col-2'>
-      <Link href={`/architects/${href}`}>
+      <Link href={`/architects/${url}`}>
         <div className='ArchitectCard'>
           <div className='ArchitectCard__Image-container'>
             <ImageCropped
-              src={photo}
+              src={avatar?.file?.url}
               className='ArchitectCard__Image'
             />
           </div>

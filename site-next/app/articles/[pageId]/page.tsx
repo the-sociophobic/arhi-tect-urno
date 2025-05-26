@@ -1,4 +1,4 @@
-import { PageProps } from '@/app/lib/types/default.types'
+import { PageProps } from '@/app/lib/types/default.type'
 
 
 const Page = async ({ params }: PageProps) => {

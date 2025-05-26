@@ -16,12 +16,12 @@ const Page = () => {
   return (
     <div className='About h-100'>
       <div className={`About__background ${currentEventIndex === -1 && 'About__background--hidden'}`}>
-        {currentEvent &&
+        {/* {currentEvent &&
           <ImageCropped
             src={currentEvent.photo}
             className='abs-cover'
           />
-        }
+        } */}
       </div>
       <ThreeScene
         className='abs-cover'

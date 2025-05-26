@@ -3,8 +3,10 @@ import { Geologica } from 'next/font/google'
 
 import { StoreProvider } from './lib/hooks/useStore/StoreProvider'
 
-import '@/app/lib/assets/styles/index.sass'
 import AppLayout from './lib/components/AppLayout'
+import QueryWrapper from './lib/components/QueryWrapper'
+
+import '@/app/lib/assets/styles/index.sass'
 
 
 const geologica = Geologica({
@@ -30,11 +32,13 @@ export default function RootLayout({
 
       </head>
       <body className={`${geologica.variable}`}>
-        <StoreProvider>
-          <AppLayout>
-            {children}
-          </AppLayout>
-        </StoreProvider>
+        <QueryWrapper>
+          <StoreProvider>
+            <AppLayout>
+              {children}
+            </AppLayout>
+          </StoreProvider>
+        </QueryWrapper>
       </body>
     </html>
   )

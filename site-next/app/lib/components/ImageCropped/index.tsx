@@ -8,7 +8,7 @@ import './index.sass'
 
 export type ImageCroppedProps = {
   className?: string
-  src: string | StaticImageData
+  src: string// | StaticImageData
   alt?: string
 }
 
@@ -43,7 +43,7 @@ const ImageCropped: FC<ImageCroppedProps> = ({
         ${typeof portrait === 'undefined' && 'ImageCropped--hidden'}
       `}
     >
-      <Image
+      <img
         ref={imageRef}
         className={`
           ImageCropped__Image

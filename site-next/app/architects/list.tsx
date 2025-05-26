@@ -1,4 +1,4 @@
-import { ArchitectType } from '../lib/types/default.types'
+import { ArchitectType } from '../lib/types/default.type'
 
 import architect_1_ImgSrc from '../lib/assets/images/architects/architect_1.jpg'
 import architect_2_ImgSrc from '../lib/assets/images/architects/architect_2.jpg'

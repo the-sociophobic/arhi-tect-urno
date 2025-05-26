@@ -63,6 +63,7 @@ const Main: FC = () => {
   const mousePointerProps = useMousePointerOnHover()
 
   // const { clock } = useThree()
+  // const data = useScroll()
 
   return (
     <>
