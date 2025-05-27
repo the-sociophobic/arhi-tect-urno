@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
 
-import { get } from '../../utils/requests'
 import {
   ContentfulArchitectType,
   ContentfulDataType,
@@ -11,6 +10,9 @@ import {
   ContentfulProjectType,
 } from '../../types/contentful.type'
 import { getContentfulData } from './contentful'
+import downloadFile from '../../utils/downloadFile'
+import isProd from '../../utils/isProd'
+import static_data from '@/app/lib/utils/static/contentful.json'
 
 
 export const emptyContentful: ContentfulDataType = {
@@ -27,17 +29,22 @@ export const getContentfulDataWithoutBadItems = async () => {
   let data: ContentfulDataType | undefined = emptyContentful
   let error = false
 
-  try {
-    data = {
-      ...(await getContentfulData<{ architects: ContentfulArchitectType[] }>('architect')),
-      ...(await getContentfulData<{ emptyCards: ContentfulEmptyCardType[] }>('emptyCard')),
-      ...(await getContentfulData<{ materials: ContentfulMaterialType[] }>('material')),
-      ...(await getContentfulData<{ medias: ContentfulMediaType[] }>('media')),
-      ...(await getContentfulData<{ pages: ContentfulPageType[] }>('page')),
-      ...(await getContentfulData<{ projects: ContentfulProjectType[] }>('project')),
+  if (!isProd()) {
+    data = static_data as any as ContentfulDataType
+  } else {
+    try {
+      data = {
+        ...(await getContentfulData<{ architects: ContentfulArchitectType[] }>('architect')),
+        ...(await getContentfulData<{ emptyCards: ContentfulEmptyCardType[] }>('emptyCard')),
+        ...(await getContentfulData<{ materials: ContentfulMaterialType[] }>('material')),
+        ...(await getContentfulData<{ medias: ContentfulMediaType[] }>('media')),
+        ...(await getContentfulData<{ pages: ContentfulPageType[] }>('page')),
+        ...(await getContentfulData<{ projects: ContentfulProjectType[] }>('project')),
+      }
+      // downloadFile(JSON.stringify(data), 'contentful', 'json')
+    } catch (err) {
+      error = true
     }
-  } catch (err) {
-    error = true
   }
 
   if (error)

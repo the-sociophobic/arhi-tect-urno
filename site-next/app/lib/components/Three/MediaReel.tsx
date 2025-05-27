@@ -9,6 +9,9 @@ import { Box, Environment } from '@react-three/drei'
 
 import useMousePointerOnHover from '../../hooks/useMousePointerOnHover'
 import generatePath from '../../utils/generatePath'
+import useContentful from '../../hooks/useContentful'
+import { MaterialsRenderOneData } from './Materials/Types'
+import { MaterialsRenderOne } from './Materials/RenderOne'
 
 const envMapSource = generatePath('/three/studio_1k_bw.hdr')
 const texturePath = generatePath('/three/architect_main.png')
@@ -37,14 +40,25 @@ const MediaReel: FC = () => {
     }
   })
 
-  const media = Array(NUMBER_OF_MEDIA).fill({
-    photo: ''
-  })
-
   // const router = useRouter()
   const [currentHovered, setCurrentHovered] = useState(-1)
 
   const mousePointerProps = useMousePointerOnHover()
+
+  const { data: contentful } = useContentful()
+
+  if (!contentful)
+    return <></>
+
+  const { medias } = contentful
+  const mappedMedia = medias.map(media => ({
+    material: {
+      id: media.id,
+      src: media.thumbnail.file.url,
+      materialIndex: 0
+    },
+    opacity: .8
+  } as MaterialsRenderOneData))
 
   return (
     <>
@@ -57,8 +71,8 @@ const MediaReel: FC = () => {
         <group
           ref={groupRef}
         >
-          {media.map((mediaEntry, mediaEntryIndex) => {
-            const rotation = mediaEntryIndex / NUMBER_OF_MEDIA * Math.PI * 2
+          {mappedMedia.map((mediaEntry, mediaEntryIndex) => {
+            const rotation = mediaEntryIndex / medias.length * Math.PI * 2
 
             return (
               <group
@@ -73,12 +87,13 @@ const MediaReel: FC = () => {
                   // onPointerLeave={() => setCurrentHovered(-1)}
                   {...mousePointerProps}
                 >
-                  <meshStandardMaterial
+                  <MaterialsRenderOne {...mediaEntry} />
+                  {/* <meshStandardMaterial
                     map={texture}
                     envMap={envMap}
-                    // reflectivity={.5}
-                    // refractionRatio={0.95}
-                  />
+                  // reflectivity={.5}
+                  // refractionRatio={0.95}
+                  /> */}
                 </Box>
               </group>
             )

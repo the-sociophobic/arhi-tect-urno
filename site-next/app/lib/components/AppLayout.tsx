@@ -3,6 +3,7 @@
 import { FC, ReactNode } from 'react'
 
 import Header from './Header'
+import isProd from '../utils/isProd'
 // import { FooterCSR } from './Footer'
 // import LoaderSelfHandled from './LoaderSelfHandled'
 
@@ -20,7 +21,7 @@ const AppLayout: FC<AppLayoutProps> = ({
       <div
         className='content'
       >
-        <Header />
+        {!isProd() && <Header />}
         {children}
         {/* <FooterCSR /> */}
       </div>
