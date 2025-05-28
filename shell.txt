@@ -1,0 +1,1 @@
+cd arhi-tect-urno/site-next ; git pull ; nvm use 20 ; yarn build ; pm2 stop arhi-tect-urno ; pm2 start arhi-tect-urno
