@@ -1,4 +1,5 @@
-import { Plane } from 'three'
+import { Ref } from 'react'
+import { Plane, MeshStandardMaterial } from 'three'
 
 
 export interface TextureCoords {
@@ -17,6 +18,7 @@ export type MaterialsRenderData = {
 }
 
 export type MaterialsRenderOneData = {
+  _ref?: Ref<MeshStandardMaterial>
   material: MaterialData
   clippingPlanes?: Readonly<Plane[]>
   transparent?: boolean

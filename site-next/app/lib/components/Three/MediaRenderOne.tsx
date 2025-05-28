@@ -1,8 +1,8 @@
 import { FC, useEffect, useRef } from 'react'
 import { Box } from '@react-three/drei'
 import * as THREE from 'three'
+import { useRouter } from 'next/navigation'
 
-import { MaterialsRenderOneData } from './Materials/Types'
 import { Vector3 } from '../../types/three.type'
 import { MaterialsRenderOne } from './Materials/RenderOne'
 import useMousePointerOnHover from '../../hooks/useMousePointerOnHover'
@@ -65,6 +65,8 @@ const MediaRenderOne: FC<MediaRenderOneProps> = ({
     }
   }, [hoveredIds])
 
+  const router = useRouter()
+
   return (
     <>
       <RaycasterRender />
@@ -78,15 +80,7 @@ const MediaRenderOne: FC<MediaRenderOneProps> = ({
           ref={boxRef}
           scale={scale}
           position={position}
-          // onClick={() => router.push(`/media-${mediaEntryIndex}`)}
-          // onPointerEnter={() => {
-          //   play()
-          //   playScale()
-          // }}
-          // onPointerLeave={() => {
-          //   playBackward()
-          //   playBackwardScale()
-          // }}
+          onClick={() => router.push(`/media/${media.url}`)}
           {...mousePointerProps}
         >
           <MaterialsRenderOne

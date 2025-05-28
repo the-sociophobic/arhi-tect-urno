@@ -3,7 +3,8 @@
 import { useRouter } from 'next/navigation'
 
 import ThreeScene from './lib/components/Three/ThreeScene'
-import Main from './lib/components/Three/Main'
+import { MainRender } from './lib/components/Three/Main'
+import { ScrollControls } from '@react-three/drei'
 
 
 const Page = () => {
@@ -30,7 +31,9 @@ const Page = () => {
       </div>
       <div className='abs-cover'>
         <ThreeScene>
-          <Main />
+          <ScrollControls pages={3}>
+            <MainRender />
+          </ScrollControls>
         </ThreeScene>
       </div>
     </div>

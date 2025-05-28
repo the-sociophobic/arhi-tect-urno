@@ -8,6 +8,7 @@ import { MaterialsRenderOneData } from './Types'
 
 
 export const MaterialsRenderOne: FC<MaterialsRenderOneData> = ({
+  _ref,
   material,
   textureOffset: textureOffsetFromProps,
   textureSize: textureSizeFromProps,
@@ -81,6 +82,7 @@ export const MaterialsRenderOne: FC<MaterialsRenderOneData> = ({
 
   return (
     <meshStandardMaterial
+      ref={_ref}
       // attach={`material-${loadedMaterial.materialIndex}`}
       transparent
       {...textureMapProps}
