@@ -2,6 +2,37 @@
 @import './modificators.sass'
 
 
+.Main
+  position: relative
+  height: 100vh
+  overflow: hidden
+  &__container
+    @extend .d-flex
+    @extend .flex-row
+    @extend .justify-content-center
+    @extend .align-items-center
+    position: relative
+    height: 100%
+    font-size: calc(100vw / 20)
+    font-weight: 300
+    letter-spacing: -0.3vw
+    position: relative
+    transition: transform 4.5s
+    transform: scale(1)
+    &::after
+      content: ''
+      position: absolute
+      left: -50%
+      top: 50%
+      width: 200%
+      height: 100%
+      transform: translateY(-50%)
+      transition: left 4.5s
+      background: linear-gradient(90deg,rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 25%, rgba(255, 255, 255, 1) 100%)
+    &--appear
+      transform: scale(1.7)
+      &::after
+        left: 100%
 .Main__h1--gray
   color: #414141
 .Main__h1--yellow

@@ -50,11 +50,11 @@ const useAnimation = <T = number | Vector3>({
       let updatedAlpha = pastTime / duration
       let updatedState = state.current
 
-      if (state.current === 'forward' && updatedAlpha > 1) {
+      if (state.current === 'forward' && updatedAlpha >= 1) {
         updatedState = 'finish'
         updatedAlpha = 1
       }
-      if (state.current === 'backward' && updatedAlpha < 0) {
+      if (state.current === 'backward' && updatedAlpha <= 0) {
         updatedState = 'start'
         updatedAlpha = 0
       }
@@ -106,6 +106,7 @@ const useAnimation = <T = number | Vector3>({
     play,
     playBackward,
     pause,
+    state
   }
 }
 

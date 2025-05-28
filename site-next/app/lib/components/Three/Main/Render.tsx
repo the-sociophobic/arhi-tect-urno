@@ -8,6 +8,9 @@ import useContentful from '@/app/lib/hooks/useContentful'
 import { MainRenderOne } from './RenderOne'
 import generatePath from '@/app/lib/utils/generatePath'
 import { useFrame } from '@react-three/fiber'
+import useAnimation from '../useAnimation'
+import { ANIM_DELAY } from './consts'
+import RaycasterRender from '../Render'
 
 
 const envMapSource = generatePath('/three/studio_1k_bw.hdr')
@@ -30,10 +33,25 @@ const MainRender: FC = () => {
   const { data: contentful } = useContentful()
 
   const scroll = useScroll()
-
-  useFrame(() => {
-    const groupScale = scroll.range(0, 1) + 1
-    groupRef.current?.scale.set(groupScale, groupScale, groupScale)
+  const {
+    play,
+    state
+  } = useAnimation<number>({
+    startValue: .7,
+    endValue: 1.2,
+    duration: 3,
+    onChange: value => {
+      groupRef.current?.scale.set(value, value, value)
+    }
+  })
+  useFrame((threeState) => {
+    if (threeState.clock.elapsedTime > ANIM_DELAY && state.current === 'start') {
+      play()
+    }
+    if (threeState.clock.elapsedTime > ANIM_DELAY + 3) {
+      const groupScale = scroll.range(0, 1) + 1.2
+      groupRef.current?.scale.set(groupScale, groupScale, groupScale)
+    }
   })
 
   if (!contentful)
@@ -43,6 +61,7 @@ const MainRender: FC = () => {
 
   return (
     <>
+      <RaycasterRender />
       <Environment files={envMapSource} />
       <ambientLight intensity={3} />
       <group

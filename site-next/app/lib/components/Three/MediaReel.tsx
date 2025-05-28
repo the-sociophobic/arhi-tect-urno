@@ -27,7 +27,7 @@ const MediaReel: FC = () => {
   } = useAnimation<number>({
     startValue: 1,
     endValue: 0,
-    duration: .5,
+    duration: .25,
     onChange: value => {
       alphaScale.current = value
     }

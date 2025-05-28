@@ -1,16 +1,17 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { FC, useRef } from 'react'
+import { FC, useEffect, useRef } from 'react'
 import * as THREE from 'three'
 import { useFrame, useThree } from '@react-three/fiber'
 import { Box, Sphere } from '@react-three/drei'
 
 import { MaterialsRenderOne } from '../Materials/RenderOne'
 import useMousePointerOnHover from '@/app/lib/hooks/useMousePointerOnHover'
-import { HEIGHT, NUMBER_OF_MEDIA_2, OPACITY_NUMBER_MAX, TIME_OFFSET, TOP_OFFSET } from './consts'
+import { ANIM_DELAY, HEIGHT, NUMBER_OF_MEDIA_2, OPACITY_NUMBER_MAX, TIME_OFFSET, TOP_OFFSET } from './consts'
 import useStore from '@/app/lib/hooks/useStore'
 import { ContentfulMediaType } from '@/app/lib/types/contentful.type'
+import useAnimation from '../useAnimation'
 
 
 
@@ -28,6 +29,7 @@ const MainRenderOne: FC<MainRenderOneProps> = ({
   y_pos,
   isSphere
 }) => {
+  const id = media.id + x_pos + '_' + y_pos
   const router = useRouter()
   const alpha = y_pos / NUMBER_OF_MEDIA_2
   const position2 = [
@@ -36,10 +38,10 @@ const MainRenderOne: FC<MainRenderOneProps> = ({
     0
   ] as [number, number, number]
   const { hoveredIds } = useStore()
-  const hovered = media.id === hoveredIds[0]
+  const hovered = id === hoveredIds[0]
 
   const opacityNumber = x_pos * NUMBER_OF_MEDIA_2 + y_pos
-  const indexAlpha = opacityNumber / OPACITY_NUMBER_MAX * 2
+  const indexAlpha = ANIM_DELAY + opacityNumber / OPACITY_NUMBER_MAX * 2
 
   const meshRef = useRef<THREE.Mesh>(null)
   const materialRef = useRef<THREE.MeshStandardMaterial>(null)
@@ -49,20 +51,43 @@ const MainRenderOne: FC<MainRenderOneProps> = ({
 
     const { elapsedTime } = threeState.clock
     const opacityAlpha = elapsedTime < indexAlpha ?
-    0
-    :
-    elapsedTime < (indexAlpha + TIME_OFFSET) ?
-      (elapsedTime - indexAlpha) / TIME_OFFSET
+      0
       :
-      1
+      elapsedTime < (indexAlpha + TIME_OFFSET) ?
+        (elapsedTime - indexAlpha) / TIME_OFFSET
+        :
+        1
 
     materialRef.current.opacity = opacityAlpha
 
-    const scale = (1 + (1 - opacityAlpha) * .2) * (hovered ? 1.1 : 1) / (isSphere ? 2 : 1)
+    if (opacityAlpha < 1) {
+      const scale = (1 + (1 - opacityAlpha) * .1) / (isSphere ? 2 : 1)
 
-    meshRef.current.scale.set(scale, scale, scale)
+      meshRef.current.scale.set(scale, scale, scale)
+    }
   })
 
+  const {
+    play,
+    playBackward
+  } = useAnimation<number>({
+    startValue: 1,
+    endValue: 1.17,
+    duration: .7,
+    onChange: value => {
+      if (meshRef.current) {
+        const scale = isSphere ? value / 2 : value
+        meshRef.current.scale.set(scale, scale, scale)
+      }
+    }
+  })
+
+  useEffect(() => {
+    if (hovered)
+      play()
+    else
+      playBackward()
+  }, [hovered])
 
   const mousePointerProps = useMousePointerOnHover()
 
@@ -72,6 +97,7 @@ const MainRenderOne: FC<MainRenderOneProps> = ({
       position={position2}
       onClick={() => router.push(`/architects`)}
       {...mousePointerProps}
+      userData={{ id }}
     >
       <MaterialsRenderOne
         _ref={materialRef}
@@ -89,6 +115,7 @@ const MainRenderOne: FC<MainRenderOneProps> = ({
       position={position2}
       onClick={() => router.push(`/architects`)}
       {...mousePointerProps}
+      userData={{ id }}
     >
       <MaterialsRenderOne
         _ref={materialRef}

@@ -1,26 +1,23 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
+import { ScrollControls } from '@react-three/drei'
 
 import ThreeScene from './lib/components/Three/ThreeScene'
 import { MainRender } from './lib/components/Three/Main'
-import { ScrollControls } from '@react-three/drei'
 
 
 const Page = () => {
-  // const fontSize = Math.floor((document?.body?.clientWidth || 1000) / 12)
-  const fontSize = '175px'
-  const router = useRouter()
+  const [appear, setAppear] = useState(false)
+
+  useEffect(() => {
+    setAppear(true)
+  }, [])
 
   return (
-    <div className='h-100 position-relative'>
+    <div className='Main'>
       <div
-        className='d-flex flex-row justify-content-center align-items-center h-100'
-        style={{
-          fontSize,
-          fontWeight: '300',
-          letterSpacing: '-10px'
-        }}
+        className={`Main__container ${appear && 'Main__container--appear'}`}
       >
         <p className='Main__h1--gray'>
           АРХИТЕКТУР

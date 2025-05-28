@@ -36,7 +36,7 @@ const MediaRenderOne: FC<MediaRenderOneProps> = ({
   } = useAnimation<Vector3>({
     startValue: position,
     endValue: [position[0] + .3, position[1], position[2]],
-    duration: .1,
+    duration: .25,
     onChange,
   })
 
@@ -48,8 +48,8 @@ const MediaRenderOne: FC<MediaRenderOneProps> = ({
     playBackward: playBackwardScale,
   } = useAnimation<Vector3>({
     startValue: scale,
-    endValue: [scale[0] * 1.4, scale[1] * 1.4, scale[2] * 1.4],
-    duration: .1,
+    endValue: [scale[0] * 1.3, scale[1] * 1.3, scale[2] * 1.3],
+    duration: .25,
     onChange: onChangeScale,
   })
   const mousePointerProps = useMousePointerOnHover()

@@ -6,3 +6,4 @@ export const HEIGHT = 5.5
 export const TOP_OFFSET = HEIGHT / 2 - .75
 export const OPACITY_NUMBER_MAX = NUMBER_OF_MEDIA * NUMBER_OF_MEDIA_2
 export const TIME_OFFSET = .7
+export const ANIM_DELAY = 1.5
