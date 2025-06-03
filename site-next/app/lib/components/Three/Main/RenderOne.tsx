@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation'
 import { FC, useEffect, useRef } from 'react'
 import * as THREE from 'three'
-import { useFrame, useThree } from '@react-three/fiber'
+import { useFrame } from '@react-three/fiber'
 import { Box, Sphere } from '@react-three/drei'
 
 import { MaterialsRenderOne } from '../Materials/RenderOne'
@@ -72,8 +72,8 @@ const MainRenderOne: FC<MainRenderOneProps> = ({
     playBackward
   } = useAnimation<number>({
     startValue: 1,
-    endValue: 1.17,
-    duration: .7,
+    endValue: 1.09,
+    duration: .11,
     onChange: value => {
       if (meshRef.current) {
         const scale = isSphere ? value / 2 : value

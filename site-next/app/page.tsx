@@ -19,10 +19,10 @@ const Page = () => {
       <div
         className={`Main__container ${appear && 'Main__container--appear'}`}
       >
-        <p className='Main__h1--gray'>
+        <p className='Main__h1--gray no-select'>
           АРХИТЕКТУР
         </p>
-        <p className='Main__h1--yellow'>
+        <p className='Main__h1--yellow no-select'>
           НО
         </p>
       </div>

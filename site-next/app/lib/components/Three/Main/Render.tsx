@@ -2,15 +2,17 @@
 
 import { FC, useRef } from 'react'
 import * as THREE from 'three'
-import { Box, Sphere, Environment, useScroll } from '@react-three/drei'
+import { useFrame } from '@react-three/fiber'
+import { Environment, useScroll } from '@react-three/drei'
 
 import useContentful from '@/app/lib/hooks/useContentful'
 import { MainRenderOne } from './RenderOne'
 import generatePath from '@/app/lib/utils/generatePath'
-import { useFrame } from '@react-three/fiber'
 import useAnimation from '../useAnimation'
 import { ANIM_DELAY } from './consts'
 import RaycasterRender from '../Render'
+import { mouseClickedRef, pointerAcceleration, prevMouseClickedRef, prevPointerRef, ThreeRefsRender } from '../ThreeRefs'
+import { clamp } from 'lodash'
 
 
 const envMapSource = generatePath('/three/studio_1k_bw.hdr')
@@ -19,6 +21,8 @@ const NUMBER_OF_MEDIA = 11
 const NUMBER_OF_MEDIA_2 = 4
 const WIDTH = 16
 const LEFT_OFFSET = WIDTH / -2
+const pointerDelta = new THREE.Vector2()
+const pointerDelta3 = new THREE.Vector3()
 
 
 const MainRender: FC = () => {
@@ -52,17 +56,44 @@ const MainRender: FC = () => {
       const groupScale = scroll.range(0, 1) + 1.2
       groupRef.current?.scale.set(groupScale, groupScale, groupScale)
     }
+
+    const { pointer, camera } = threeState
+
+    if (mouseClickedRef.current) {
+      if (!prevMouseClickedRef.current) {
+        prevMouseClickedRef.current = true
+        prevPointerRef.current.copy(pointer)
+        return
+      }
+
+      pointerDelta.copy(prevPointerRef.current).sub(pointer)
+      pointerDelta3.set(pointerDelta.x, pointerDelta.y, 0).multiplyScalar(.3)
+      pointerAcceleration.current.add(pointerDelta3)
+
+      prevPointerRef.current.copy(pointer)
+    } else {
+      prevMouseClickedRef.current = false
+    }
+    pointerAcceleration.current.multiplyScalar(.97)
+    camera.position.add(pointerAcceleration.current)
+    camera.position.set(
+      clamp(camera.position.x, -14, 14),
+      clamp(camera.position.y, -5, 5),
+      camera.position.z,
+    )
+    prevPointerRef.current.copy(pointer)
   })
 
   if (!contentful)
     return <></>
 
   const { medias } = contentful
-
+  
   return (
     <>
       <RaycasterRender />
       <Environment files={envMapSource} />
+      <ThreeRefsRender />
       <ambientLight intensity={3} />
       <group
         ref={groupRef}
