@@ -66,8 +66,13 @@ const MediaReel: FC = () => {
       <Environment files={envMapSource} />
       <ambientLight intensity={3} />
       <group
-        scale={[.7, .7, .7]}
-        rotation={[.3, 0, -.3]}
+        scale={[.9, .9, .9]}
+        rotation={[
+          .3,
+          0,
+          0
+          // -.3
+        ]}
       >
         <group
           ref={groupRef}

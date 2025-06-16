@@ -29,8 +29,9 @@ const MagicSphere: FC = () => {
   const texture = useLoader(THREE.TextureLoader, texturePath)
   texture.wrapS = THREE.RepeatWrapping
   texture.wrapT = THREE.RepeatWrapping
-  texture.repeat.set(1.5, 1.5)
-  texture.offset.set(-.015, .5)
+  texture.repeat.set(1.8, 1)
+  // texture.offset.set(-.015, .5)
+  texture.offset.set(.05, 0)
 
   const envMap = useLoader(RGBELoader, envMapSource)
   // envMap.mapping = THREE.EquirectangularRefractionMapping
@@ -55,7 +56,7 @@ const MagicSphere: FC = () => {
     <>
       <Environment files={envMapSource} />
       <ambientLight intensity={3} />
-      <group scale={[.9, .9, .9]}>
+      <group scale={[.6, .6, .6]}>
         <Sphere
           ref={sphereRef}
           args={[3.25, 35, 35]}

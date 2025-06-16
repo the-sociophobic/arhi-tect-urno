@@ -40,7 +40,7 @@ const Architects = () => {
           <div className='mb-1' />
         </div>
       </div>
-      <div className='row'>
+      {/* <div className='row'>
         {architectsMapped[0]}
         <ArchitectCardEmpty />
         {architectsMapped.slice(1, 4)}
@@ -48,7 +48,7 @@ const Architects = () => {
         {architectsMapped.slice(4, 5)}
         <ArchitectCardEmpty />
         {architectsMapped.slice(5)}
-      </div>
+      </div> */}
     </div>
   )
 }
