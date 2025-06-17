@@ -12,26 +12,36 @@ import generatePath from '../../utils/generatePath'
 const envMapSource = generatePath('/three/studio_1k_bw.hdr')
 const texturePath = generatePath('/three/architect_main.png')
 
+
 const MagicSphere: FC = () => {
 
   const { pointer } = useThree()
   const sphereRef = useRef<THREE.Mesh>(null)
 
-  // useEffect(() => {
-  //   const video = document.getElementById('video');
-  //   (video as HTMLVideoElement)?.play?.()
-  // }, [])
+  useEffect(() => {
+    const video = document.getElementById('video');
+    (video as HTMLVideoElement)?.play?.()
+  }, [])
 
-  // const video = document.getElementById('video')
-  // const texture = new THREE.VideoTexture( (video as HTMLVideoElement)! )
-  // texture.colorSpace = THREE.SRGBColorSpace
+  let texture
 
-  const texture = useLoader(THREE.TextureLoader, texturePath)
-  texture.wrapS = THREE.RepeatWrapping
-  texture.wrapT = THREE.RepeatWrapping
-  texture.repeat.set(1.8, 1)
-  // texture.offset.set(-.015, .5)
-  texture.offset.set(.05, 0)
+  const video = document.getElementById('video')
+
+  if (video) {
+    texture = new THREE.VideoTexture( (video as HTMLVideoElement)! )
+    texture.colorSpace = THREE.SRGBColorSpace
+  } else {
+    texture = useLoader(THREE.TextureLoader, texturePath)
+  }
+
+  if (texture.wrapS && texture.wrapT && texture.repeat && texture.offset) {
+    texture.wrapS = THREE.RepeatWrapping
+    texture.wrapT = THREE.RepeatWrapping
+    texture.repeat.set(1.8, 1)
+    // texture.offset.set(-.015, .5)
+    texture.offset.set(.05, 0)
+  }
+
 
   const envMap = useLoader(RGBELoader, envMapSource)
   // envMap.mapping = THREE.EquirectangularRefractionMapping
@@ -67,7 +77,7 @@ const MagicSphere: FC = () => {
             color={'0xff00ff'}
             envMap={envMap}
             // envMap={texture}
-            map={envMap}
+            map={texture}
             reflectivity={.5}
             refractionRatio={0.95}
           />
