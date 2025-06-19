@@ -31,7 +31,10 @@ const Architects = () => {
         </div>
         <div className='col-8 mb-5'>
           <div className='Architects__Three-container'>
-            <ThreeScene className='Architects__Three'>
+            <ThreeScene
+              orthographic={false}
+              className='Architects__Three'
+            >
               <MagicSphere />
             </ThreeScene>
           </div>

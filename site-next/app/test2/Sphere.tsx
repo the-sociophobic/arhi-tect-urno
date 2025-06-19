@@ -24,7 +24,10 @@ const Sphere = () => {
         <div className='row'>
           <div className='col mb-5'>
             <div className='Architects__Three-container'>
-              <ThreeScene className='Architects__Three'>
+              <ThreeScene
+                orthographic={false}
+                className='Architects__Three'
+              >
                 <MagicSphere />
               </ThreeScene>
             </div>
