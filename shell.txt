@@ -1,3 +1,3 @@
-cd arhi-tect-urno/site-next ; git pull ; nvm use 20 ; pm2 stop arhi-tect-urno ; pm2 stop bulgakov-bot ; pm2 stop auto-bot ; yarn build
+cd arhi-tect-urno/site-next ; git pull ; nvm use 20 ; pm2 stop arhi-tect-urno bulgakov-bot stop auto-bot ; yarn build
 
-pm2 start arhi-tect-urno ; pm2 start bulgakov-bot ; pm2 start auto-bot
+pm2 start arhi-tect-urno bulgakov-bot auto-bot
