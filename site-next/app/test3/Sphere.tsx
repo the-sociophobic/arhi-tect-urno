@@ -20,17 +20,15 @@ const Sphere = () => {
         <source src={generatePath('/three/video/3.mp4')} />
       </video>
 
-      <div className='container'>
-        <div className='row'>
-          <div className='col mb-5'>
-            <div className='Architects__Three-container'>
-              <ThreeScene
-                orthographic={false}
-                className='Architects__Three'
-              >
-                <MagicSphere />
-              </ThreeScene>
-            </div>
+      <div className='row'>
+        <div className='col mb-5'>
+          <div className='Architects__Three-container'>
+            <ThreeScene
+              // orthographic={false}
+              className='Architects__Three'
+            >
+              <MagicSphere />
+            </ThreeScene>
           </div>
         </div>
       </div>

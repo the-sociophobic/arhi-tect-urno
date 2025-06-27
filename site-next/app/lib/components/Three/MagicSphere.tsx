@@ -1,6 +1,6 @@
 'use client'
 
-import { FC, useEffect, useRef } from 'react'
+import { FC, useEffect, useRef, useState } from 'react'
 
 import * as THREE from 'three'
 import { RGBELoader } from 'three-stdlib'
@@ -8,11 +8,11 @@ import { useFrame, useThree, useLoader } from '@react-three/fiber'
 import { Environment, Sphere } from '@react-three/drei'
 import generatePath from '../../utils/generatePath'
 import AssetRenderOne from './Asset/RenderOne'
+import { Vector3 } from '../../types/three.type'
 
 
 const envMapSource = generatePath('/three/studio_1k_bw.hdr')
 const texturePath = generatePath('/three/architect_main.png')
-const sphereForwardTmpVector = new THREE.Vector3()
 
 
 const MagicSphere: FC = () => {
@@ -49,49 +49,36 @@ const MagicSphere: FC = () => {
   useFrame(threeState => {
     if (sphereRef.current) {
       const { pointer } = threeState
-      sphereForwardTmpVector.set(
-        pointer.x,
-        pointer.y,
-        .5,
-      ).normalize()
-      // const xRotation = Math.acos(sphereForwardTmpVector.y) * Math.sign(sphereForwardTmpVector.z) - Math.PI
-      // const yRotation = Math.acos(sphereForwardTmpVector.z) * Math.sign(sphereForwardTmpVector.x) - Math.PI
-      const xRotation = -Math.PI / 2 + pointer.y / 2.35
-      const yRotation = pointer.x / 2.35
-      sphereRef.current.rotation.set(
-        xRotation,
-        // yRotation,
-        0,
-        yRotation,
-      )
-      // const alpha = threeState.clock.elapsedTime - Math.floor(threeState.clock.elapsedTime)
-      // sphereRef.current.rotation.set(
-      //   Math.PI / 15 * Math.cos(threeState.clock.elapsedTime),
-      //   Math.PI / 15 * Math.sin(threeState.clock.elapsedTime),
-      //   0
-      // )
+      const newRotation = getRotationFromPointer(pointer.x, pointer.y)
+      const newRotationLerp = lerpRotation(sphereRef.current.rotation.toArray() as Vector3, newRotation)
+
+      sphereRef.current.rotation.set(...newRotationLerp)
     }
   })
+
+  const { pointer } = useThree()
+  const [initialRotation] = useState(getRotationFromPointer(pointer.x, pointer.y))
 
   return (
     <>
       <Environment
         files={envMapSource}
-        // environmentRotation={10}
-        // backgroundRotation={10}
-        // map={envMap}
-        // backgroundIntensity={1}
-        // environmentIntensity={100}
+      // environmentRotation={10}
+      // backgroundRotation={10}
+      // map={envMap}
+      // backgroundIntensity={1}
+      // environmentIntensity={100}
       />
       {/* <Environment preset="city" /> */}
       <ambientLight intensity={1.7} />
       <group
-        rotation={[Math.PI / 2, Math.PI, 0]}
+        rotation={[0, Math.PI, 0]}
       >
         <group
           ref={sphereRef}
-          scale={[1.75, 5.0, 1.75]}
-          position={[0, 0, 2]}
+          position={[0, 0, 0]}
+          rotation={initialRotation}
+          scale={[1, 4, 1]}
         >
           <group
           // position={[0, -1, 0]}
@@ -131,3 +118,27 @@ const MagicSphere: FC = () => {
 
 
 export default MagicSphere
+
+
+const getRotationFromPointer = (pointerX: number, pointerY: number) => {
+  const _x = pointerX && !isNaN(pointerX) ? pointerX : 0
+  const _y = pointerY && !isNaN(pointerY) ? pointerY : 0
+  const x = Math.sign(_x) * Math.min(Math.abs(_x) * 4, 1)
+  const y = Math.sign(_y) * Math.min(Math.abs(_y) * 4, 1)
+  const xRotation = Math.asin(Math.sign(y) * (Math.abs(y) ** 1)) / 1.7 - Math.PI / 2
+  const yRotation = Math.asin(Math.sign(x) * (Math.abs(x) ** 1)) / 1.7
+
+  return [
+    xRotation,
+    0,
+    yRotation,
+  ] as Vector3
+}
+
+const lerpRotation = (rotationA: Vector3, rotationB: Vector3) => {
+  return [
+    (rotationA[0] - rotationB[0]) * 0.92 + rotationB[0],
+    (rotationA[1] - rotationB[1]) * 0.92 + rotationB[1],
+    (rotationA[2] - rotationB[2]) * 0.92 + rotationB[2]
+  ] as Vector3
+}

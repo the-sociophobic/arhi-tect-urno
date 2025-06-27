@@ -16,19 +16,20 @@ const AssetRenderOne: FC<AssetRenderOneProps> = ({
   envMap,
   ...data
 }) => {
-  // const material = new THREE.MeshStandardMaterial({
-  //   metalness: .7,
-  //   roughness: .1,
-  // })
-  const material = new THREE.MeshPhongMaterial({
+  const material = new THREE.MeshStandardMaterial({
     map,
-    envMap,
-    // specularMap: envMap,
-    // lightMap: envMap,
-    // specular: 1,
-    // reflectivity: 0,
-    // refractionRatio: 0,
+    metalness: 0,
+    roughness: 0,
   })
+  // const material = new THREE.MeshPhongMaterial({
+  //   map,
+  //   envMap,
+  //   // specularMap: envMap,
+  //   // lightMap: envMap,
+  //   // specular: 1,
+  //   // reflectivity: 0,
+  //   // refractionRatio: 0,
+  // })
   const model = AssetLoader.load({ ...data })
   const scene = AssetLoader.changeMaterialGLTF(model.scene, material as any)
 
