@@ -137,8 +137,8 @@ const getRotationFromPointer = (pointerX: number, pointerY: number) => {
 
 const lerpRotation = (rotationA: Vector3, rotationB: Vector3) => {
   return [
-    (rotationA[0] - rotationB[0]) * 0.92 + rotationB[0],
-    (rotationA[1] - rotationB[1]) * 0.92 + rotationB[1],
-    (rotationA[2] - rotationB[2]) * 0.92 + rotationB[2]
+    (rotationA[0] - rotationB[0]) * 0.95 + rotationB[0],
+    (rotationA[1] - rotationB[1]) * 0.95 + rotationB[1],
+    (rotationA[2] - rotationB[2]) * 0.95 + rotationB[2]
   ] as Vector3
 }
