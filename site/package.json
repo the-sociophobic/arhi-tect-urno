@@ -15,6 +15,8 @@
   "dependencies": {
     "@react-three/drei": "^9.92.4",
     "@react-three/fiber": "^8.15.12",
+    "@tanstack/react-query": "^5.81.5",
+    "contentful": "^11.7.5",
     "gh-pages": "^6.1.0",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
@@ -32,8 +34,8 @@
     "eslint": "^8.55.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
-    "sass": "^1.86.0",
     "globals": "^15.15.0",
+    "sass": "^1.86.0",
     "typescript": "^5.2.2",
     "typescript-eslint": "^8.24.1",
     "vite": "^5.0.8"

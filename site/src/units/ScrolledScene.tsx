@@ -1,15 +1,17 @@
 import { FC } from 'react'
 
 import { AssetRenderOne } from './Asset'
-import MagicSphere from './MagicSphere'
 import generatePath from '../utils/generatePath'
+import useContentful from '../hooks/useContentful'
 // import Particles from './Particles'
 
 
 const ScrolledScene: FC = () => {
+  const { data: contentful } = useContentful()
+  console.log(contentful)
+  
   return (
     <>
-      <MagicSphere />
       {/* <Particles count={100} /> */}
       <AssetRenderOne
         asset={{
