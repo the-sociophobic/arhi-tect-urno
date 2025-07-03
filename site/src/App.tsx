@@ -4,13 +4,15 @@ import Scene from './components/Scene'
 import QueryWrapper from './components/QueryWrapper'
 
 import './assets/style.sass'
+import Background from './components/Background'
 
 
 const App: FC = () => {
   return (
     <QueryWrapper>
       <div className='App'>
-        <Scene />
+        <Background />
+        {/* <Scene /> */}
       </div>
     </QueryWrapper>
   )
