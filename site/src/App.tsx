@@ -5,6 +5,7 @@ import Scene from './components/Scene'
 import QueryWrapper from './components/QueryWrapper'
 import Background from './components/Background'
 import Header from './components/Header/index'
+import Footer from './components/Footer/index'
 import { Store } from './components/Store/Store'
 import { StoreProvider } from './components/Store/StoreProvider'
 
@@ -33,6 +34,10 @@ const AppInners: FC = observer(() => {
       <Background />
       <Header />
       {/* <Scene /> */}
+      <div className='content'>
+        a
+      </div>
+      <Footer />
     </div>
   )
 })

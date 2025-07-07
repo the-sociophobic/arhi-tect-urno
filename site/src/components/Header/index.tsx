@@ -33,6 +33,7 @@ const Header: FC = observer(() => {
                   onClick={() => setSectionIndex(linkIndex)}
                   className={`
                     Header__links__item
+                    ${linkIndex === 0 && 'd-none'}
                     ${linkIndex === sectionIndex && 'Header__links__item--selected'}
                   `}
                 >
