@@ -12,7 +12,7 @@ const Header: FC = observer(() => {
   const { store } = useContext(StoreContext)
   const {
     sectionIndex,
-    setSectionIndex
+    setScroll
   } = store
 
   return (
@@ -30,7 +30,7 @@ const Header: FC = observer(() => {
               {sections.map((link, linkIndex) =>
                 <div
                   key={link.label}
-                  onClick={() => setSectionIndex(linkIndex)}
+                  onClick={() => setScroll(linkIndex)}
                   className={`
                     Header__links__item
                     ${linkIndex === 0 && 'd-none'}

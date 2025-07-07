@@ -19,6 +19,10 @@ body
     @extend .flex-column
     overflow-y: hidden
     .Header
+      width: 100vw
+      position: fixed
+      top: 0
+      left: 0
       @extend .d-flex
       @extend .flex-row
       @extend .align-items-start
@@ -34,10 +38,17 @@ body
         &__item
           cursor: pointer
           font-size: 16px
+          border-bottom: 1px solid rgba(255, 255, 255, 0)
+          transition: border .3s
           &--selected
             border-bottom: 1px solid white
       &__logo
         margin-top: -5px
+    .Footer
+      width: 100vw
+      position: fixed
+      bottom: 0
+      left: 0
     .content
       position: relative
       width: 100vw
@@ -59,13 +70,14 @@ body
 .video-container
   display: none
 
-
+.Scene__container,
 .Background
   position: fixed
   top: 0
   left: 0
   width: 100vw
   height: 100vh
+.Background
   background-color: #ACAA75
   z-index: -1
   &__1,

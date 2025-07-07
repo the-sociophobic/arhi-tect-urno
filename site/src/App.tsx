@@ -32,11 +32,10 @@ const AppInners: FC = observer(() => {
   return (
     <div className='App'>
       <Background />
-      <Header />
-      {/* <Scene /> */}
-      <div className='content'>
-        a
+      <div className='Scene__container'>
+        <Scene />
       </div>
+      <Header />
       <Footer />
     </div>
   )
