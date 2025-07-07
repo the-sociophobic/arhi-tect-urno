@@ -1,7 +1,12 @@
+@import './vars.sass'
+@import './fonts.sass'
+
+@import '~bootstrap/scss/bootstrap.scss'
+
+
 *
   padding: 0
   margin: 0
-  font-size: 300px
 
 body
   background-color: white
@@ -10,20 +15,35 @@ body
     height: 100vh
     min-height: 370px
     position: relative
-    // .video-container
-    //   width: 0
-    //   height: 0
-    //   overflow: hidden
-    //   #video
-    .Scene
-      @extend .abs-cover
-    .scroll-container
-      width: 100%
-      height: 100%
-      overflow-y: scroll
-      .scroll-area
-        width: 100%
-        height: 300%
+    .Header
+      @extend .d-flex
+      @extend .flex-row
+      @extend .align-items-start
+      padding-top: 28px
+      &__hint
+        margin-top: 2px
+      &__links
+        @extend .flex-grow-1
+        @extend .d-flex
+        @extend .flex-row
+        @extend .align-items-center
+        @extend .justify-content-between
+        &__item
+          cursor: pointer
+          font-size: 16px
+          &--selected
+            border-bottom: 1px solid white
+      &__logo
+        margin-top: -5px
+    .content
+      position: relative
+      width: 100vw
+      overflow-x: hidden
+      @extend .d-flex
+      @extend .flex-column
+      @extend .flex-grow-1
+      @extend .justify-content-start
+      @extend .align-items-stretch
 
 .abs-cover
   position: absolute
@@ -44,6 +64,7 @@ body
   width: 100vw
   height: 100vh
   background-color: #ACAA75
+  z-index: -1
   &__1,
   &__2,
   &__3,
