@@ -7,8 +7,8 @@ import SceneObjects from '../units/SceneObjects'
 const Scene: FC = () => {
   return (
     <Canvas
-      orthographic
-      camera={{ zoom: 85 }}
+      // orthographic
+      camera={{ zoom: 1 }}
     >
       <SceneObjects />
     </Canvas>

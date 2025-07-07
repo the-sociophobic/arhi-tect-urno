@@ -34,7 +34,7 @@ const GlossySphere: FC = () => {
         args={[1, 50, 50]}
       >
         <meshStandardMaterial
-          opacity={.1}
+          opacity={.03}
           transparent={true}
           metalness={1}
           roughness={.1}

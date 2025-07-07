@@ -7,7 +7,7 @@ import type { OrbitControls as OrbitControlsType } from 'three-stdlib'
 
 
 
-const CAMERA_INITIAL_POSITION = new THREE.Vector3(0, -5, 17)
+const CAMERA_INITIAL_POSITION = new THREE.Vector3(0, 0, 7)
 const CAMERA_INITIAL_TARGET = new THREE.Vector3(0, 0, 0)
 const CAMERA_MAX_POLAR_ANGLE = Math.PI / 2 + .01
 
@@ -37,61 +37,61 @@ export const CameraControls: React.FC = () => {
   const data = useScroll()
     
   // Управление камерой
-  useFrame((_threeState, _delta) => {
-    const controls = controlsRef.current
+  // useFrame((_threeState, _delta) => {
+  //   const controls = controlsRef.current
 
-    if (!controls)
-      return
+  //   if (!controls)
+  //     return
 
-    const { target } = controls
-    const { position } = controls.object
-    // const cameraForwardVector = getCameraForwardVector(position, target)
-    // const yRotation = Math.acos(cameraForwardVector.z) * Math.sign(cameraForwardVector.x) - Math.PI
+  //   const { target } = controls
+  //   const { position } = controls.object
+  //   // const cameraForwardVector = getCameraForwardVector(position, target)
+  //   // const yRotation = Math.acos(cameraForwardVector.z) * Math.sign(cameraForwardVector.x) - Math.PI
 
-    positionToTarget
-      .copy(target)
-      .sub(position)
-    // const zoom = positionToTarget.length()
+  //   positionToTarget
+  //     .copy(target)
+  //     .sub(position)
+  //   // const zoom = positionToTarget.length()
 
-    target.set(
-      0,
-      data.range(0, 1) * -10,
-      0
-    )
-    const angle = Math.PI / 3 * (.4 + data.range(0, 1))
-    position.set(
-      Math.cos(angle) * 17,
-      // data.range(0, 1) * 15,
-      data.range(0, 1) * -10 + 3,
-      Math.sin(angle) * 17
-    )
+  //   target.set(
+  //     0,
+  //     data.range(0, 1) * -10,
+  //     0
+  //   )
+  //   const angle = Math.PI / 3 * (.4 + data.range(0, 1))
+  //   position.set(
+  //     Math.cos(angle) * 17,
+  //     // data.range(0, 1) * 15,
+  //     data.range(0, 1) * -10 + 3,
+  //     Math.sin(angle) * 17
+  //   )
 
 
-    // moveVector
-    //   .set(
-    //     (left ? -1 : 0) + (right ? 1 : 0),
-    //     0,
-    //     (forward ? -1 : 0) + (backward ? 1 : 0)
-    //   )
-    //   .applyAxisAngle(upDirection, yRotation)
-    //   .normalize()
-    //   .multiplyScalar(CAMERA_MOVEMENT_SPEED * zoom * delta)
+  //   // moveVector
+  //   //   .set(
+  //   //     (left ? -1 : 0) + (right ? 1 : 0),
+  //   //     0,
+  //   //     (forward ? -1 : 0) + (backward ? 1 : 0)
+  //   //   )
+  //   //   .applyAxisAngle(upDirection, yRotation)
+  //   //   .normalize()
+  //   //   .multiplyScalar(CAMERA_MOVEMENT_SPEED * zoom * delta)
 
-    // if (firstPersonMode) {
-    //   moveVector.multiplyScalar(FIRST_PERSON_SPEED)
-    //   rigidBody.setLinvel(moveVector, true)
+  //   // if (firstPersonMode) {
+  //   //   moveVector.multiplyScalar(FIRST_PERSON_SPEED)
+  //   //   rigidBody.setLinvel(moveVector, true)
 
-    //   // rigidBody.translation() всегда выдаёт неправильную позицию
-    //   sphere.getWorldPosition(spherePosition)
-    //   position.copy(spherePosition).setY(FIRST_PERSON_HEIGHT)
-    //   target.copy(position).add(positionToTarget)
-    // } else {
-    //   position.add(moveVector)
-    //   target.add(moveVector)
-    // }
+  //   //   // rigidBody.translation() всегда выдаёт неправильную позицию
+  //   //   sphere.getWorldPosition(spherePosition)
+  //   //   position.copy(spherePosition).setY(FIRST_PERSON_HEIGHT)
+  //   //   target.copy(position).add(positionToTarget)
+  //   // } else {
+  //   //   position.add(moveVector)
+  //   //   target.add(moveVector)
+  //   // }
 
-    controls.update()
-  })
+  //   controls.update()
+  // })
   // Конец управления камерой
 
   // const {camera} = useThree()

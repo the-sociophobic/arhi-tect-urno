@@ -10,9 +10,13 @@ import sections from '../components/Header/sections'
 import Cards from './Cards'
 import ScrollHandler from './ScrollHandler'
 import GlossySphere from './GlossySphere'
+import SkewCards from './SkewCards/index'
+import useContentful from '../hooks/useContentful'
 
 
 const SceneObjects: FC = () => {
+  const { data: contentful } = useContentful()
+
   return (
     <ScrollControls pages={sections.length}>
       <Environment files={generatePath(envMapSource)} />
@@ -22,9 +26,10 @@ const SceneObjects: FC = () => {
       {/* <ambientLight intensity={3} /> */}
       {/* <UniformsState /> */}
       {/* <ScrolledScene /> */}
-      {/* <CameraControls /> */}
+      <CameraControls />
       {/* <Cards /> */}
       <GlossySphere />
+      {contentful && <SkewCards contentful={contentful} />}
       <ScrollHandler />
     </ScrollControls>
   )
