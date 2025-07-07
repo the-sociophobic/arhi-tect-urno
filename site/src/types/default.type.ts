@@ -1,4 +1,4 @@
-import { StaticImageData } from 'next/image'
+// import { StaticImageData } from 'next/image'
 import { ReactNode } from 'react'
 
 
@@ -11,7 +11,7 @@ export type ArchitectType = {
   id: string
   href: string
   name: string
-  photo: StaticImageData
+  // photo: StaticImageData
   company: string
   description: ReactNode
 }

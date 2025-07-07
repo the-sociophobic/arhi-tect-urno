@@ -8,9 +8,9 @@ export default defineConfig({
   plugins: [
     react(),
     svgr({
+      exportAsDefault: true,
       include: '**/*.svg'
     }),
-
   ],
   resolve: {
     alias: {
