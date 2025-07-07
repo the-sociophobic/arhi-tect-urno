@@ -9,18 +9,22 @@ import envMapSource from '../utils/envMapSource'
 import sections from '../components/Header/sections'
 import Cards from './Cards'
 import ScrollHandler from './ScrollHandler'
+import GlossySphere from './GlossySphere'
 
 
 const SceneObjects: FC = () => {
   return (
     <ScrollControls pages={sections.length}>
       <Environment files={generatePath(envMapSource)} />
-      {/* <rectAreaLight position={[0, 15, -15]} intensity={100} width={10} height={10} /> */}
-      <ambientLight intensity={3} />
+      {/* <rectAreaLight position={[0, 15, 0]} intensity={1000} width={10} height={10} /> */}
+      <pointLight position={[5, 5, 5]} intensity={5} color={'#FFFFFF'}/>
+      <pointLight position={[-5, -5, 5]} intensity={10} color={'#FFFFFF'}/>
+      {/* <ambientLight intensity={3} /> */}
       {/* <UniformsState /> */}
-      <ScrolledScene />
-      <CameraControls />
-      <Cards />
+      {/* <ScrolledScene /> */}
+      {/* <CameraControls /> */}
+      {/* <Cards /> */}
+      <GlossySphere />
       <ScrollHandler />
     </ScrollControls>
   )
