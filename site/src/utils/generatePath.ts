@@ -2,7 +2,7 @@ import isProd from './isProd'
 
 
 const generatePath = (path: string) => {
-  return (isProd() ? '.' : './arhi-tect-urno') + path
+  return (isProd() ? 'https://the-sociophobic.github.io/arhi-tect-urno/' : './arhi-tect-urno') + path
 }
 
 
