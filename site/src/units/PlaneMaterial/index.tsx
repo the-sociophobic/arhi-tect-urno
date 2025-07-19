@@ -2,6 +2,7 @@ import { FC } from 'react'
 import * as THREE from 'three'
 import { useLoader } from '@react-three/fiber'
 
+// Не понимаю, те это шейдера из Гретты или нет
 import vertShader from './shader.vert?raw'
 import fragShader from './shader.frag?raw'
 
