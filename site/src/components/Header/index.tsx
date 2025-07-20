@@ -19,13 +19,14 @@ const Header: FC = observer(() => {
     <div className='Header'>
       <div className='container'>
         <div className='row'>
-          <div className='col-2'>
+
+          <div className='col-2 desktop-only'>
             <div className='Header__hint'>
               <HintSvg />
             </div>
-
           </div>
-          <div className='col'>
+
+          <div className='col ps-md-0 ps-3'>
             <div className='Header__links'>
               {sections.map((link, linkIndex) =>
                 <div
@@ -42,11 +43,11 @@ const Header: FC = observer(() => {
               )}
             </div>
           </div>
-          <div className='col-2 d-flex justify-content-end'>
-            {/* <div className='Header__logo'> */}
-              <LogoSvg className='ms-auto' />
-            {/* </div> */}
 
+          <div className='col-2 d-flex justify-content-end pe-md-0 pe-3'>
+            {/* <div className='Header__logo'> */}
+              <LogoSvg className='' />
+            {/* </div> */}
           </div>
         </div>
 

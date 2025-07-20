@@ -1,5 +1,6 @@
 @import './vars.sass'
 @import './fonts.sass'
+@import './modificators.sass'
 
 @import '~bootstrap/scss/bootstrap.scss'
 
@@ -32,8 +33,10 @@ body
       &__links
         @extend .flex-grow-1
         @extend .d-flex
-        @extend .flex-row
-        @extend .align-items-center
+        @extend .flex-column
+        @extend .flex-md-row
+        @extend .align-items-start
+        @extend .align-items-md-center
         @extend .justify-content-between
         &__item
           cursor: pointer

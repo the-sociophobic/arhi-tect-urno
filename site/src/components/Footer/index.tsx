@@ -3,6 +3,7 @@ import { observer } from 'mobx-react-lite'
 
 import { StoreContext } from '../Store/StoreContext'
 import sections from '../Header/sections'
+import { isMobile } from 'react-device-detect'
 
 
 const Footer: FC = observer(() => {
@@ -17,7 +18,7 @@ const Footer: FC = observer(() => {
       <div className='container'>
         <div className='row'>
           <div className='col'>
-            <h1 className='h1 text-center text-uppercase'>
+            <h1 className={`${isMobile ? 'h2 mb-5' : 'h1'} text-center text-uppercase`}>
               {section.label}
             </h1>
           </div>
