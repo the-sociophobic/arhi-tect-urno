@@ -9,6 +9,7 @@ const Background: FC = () => {
       <div className='Background__3' />
       <div className='Background__4' />
       <div className='Background__5' />
+      <div className='Background__6' />
     </div>
   )
 }

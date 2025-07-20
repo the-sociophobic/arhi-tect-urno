@@ -12,24 +12,57 @@ const GlossySphere: FC = () => {
   const envMap = useLoader(RGBELoader, generatePath(envMapSource))
   envMap.mapping = THREE.EquirectangularReflectionMapping
 
+  const geometry = new THREE.PlaneGeometry(5, 5, 1, 1)
+  const texture = useLoader(THREE.TextureLoader, generatePath('/sphere.png'))
+  const texture2 = useLoader(THREE.TextureLoader, generatePath('/sphere_mask.png'))
+
   return (
     <>
-      <Sphere
+      <mesh
+        args={[geometry]}
+        scale={1.5}
+      >
+        <meshStandardMaterial
+          map={texture}
+          transparent={true}
+          alphaTest={.5}
+          opacity={.7}
+        />
+      </mesh>
+      <mesh
+        args={[geometry]}
+        scale={1.501}
+        position={[0, 0, -.05]}
+      >
+        <meshPhysicalMaterial
+          map={texture2}
+          transparent={true}
+          alphaTest={.5}
+          opacity={1}
+          roughness={.4}
+          transmission={.5}
+        />
+      </mesh>
+
+      {/* <Sphere
         scale={[2.5, 2.5, 2.5]}
         args={[1, 50, 50]}
       >
-        <meshStandardMaterial
-          opacity={.5}
+        <meshPhysicalMaterial
+          opacity={.9}
           transparent={true}
-          metalness={.5}
-          roughness={.35}
+          metalness={.7}
+          roughness={.4}
+          transmission={2}
+          color={'#ACAA75'}
+        // specularIntensity={3}
         // aberrationStrength={0}
         // ior={1}
         // bounces={0}
         // envMap={envMap}
         />
-      </Sphere>
-      <Sphere
+      </Sphere> */}
+      {/* <Sphere
         scale={[2.53, 2.53, 2.53]}
         args={[1, 50, 50]}
       >
@@ -43,7 +76,7 @@ const GlossySphere: FC = () => {
         // bounces={0}
         // envMap={envMap}
         />
-      </Sphere>
+      </Sphere> */}
     </>
   )
 }

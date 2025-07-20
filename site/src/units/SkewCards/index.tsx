@@ -6,7 +6,7 @@ import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader'
 import generatePath from '../../utils/generatePath'
 import envMapSource from '../../utils/envMapSource'
 import PlaneMaterial from '../PlaneMaterial'
-import { ContentfulDataType } from '../../types/contentful.type'
+import { ContentfulDataType, ContentfulFile } from '../../types/contentful.type'
 import sections from '../../components/Header/sections'
 import SkewCardsRenderOne from './RenderOne'
 import { useScroll } from '@react-three/drei'
@@ -22,11 +22,31 @@ const SkewCards: FC<SkewCardsProps> = ({
 }) => {
   // const envMap = useLoader(RGBELoader, generatePath(envMapSource))
   // envMap.mapping = THREE.EquirectangularReflectionMapping
-  // console.log(contentful)
-  const pic = contentful.architects[1].avatar.file.url
-  const cards = sections.flatMap(section => [pic, pic, pic, pic])
+  const emptyCard = {
+    url: '/',
+    img: contentful.architects[1].avatar.file.url
+  }
+  const emptyCards4 = [emptyCard, emptyCard, emptyCard, emptyCard]
+  const cards = sections.flatMap(section => {
+    if (!section.contentfulKey)
+      return emptyCards4
+
+    const entries = contentful[section.contentfulKey as 'materials' | 'medias' | 'architects']
+    const imageKey = section.contentfulKey === 'medias' ? 'thumbnail' : 'avatar'
+    const cards = entries.slice(0, 4).map(entry => ({
+      url: entry.url,
+      img: ((entry as any)[imageKey] as ContentfulFile).file.url
+    }))
+    const cards4 = [
+      ...cards,
+      ...emptyCards4.slice(-cards.length),
+    ]
+
+    return cards4
+  })
   const groupRef = useRef<THREE.Group>(null)
   const scroll = useScroll()
+  // const scrollPosRef = useRef(0)
 
   useFrame(threeState => {
     const group = groupRef.current
@@ -35,8 +55,9 @@ const SkewCards: FC<SkewCardsProps> = ({
       return
 
     const scrollPos = scroll.range(0, 1)
+    // scrollPosRef.current = scrollPos
 
-    group.position.setY(scrollPos * 3 - 10)
+    group.position.setY(scrollPos * 68 - 70)
     group.rotation.set(
       group.rotation.x,
       scrollPos * cards.length / 4 * Math.PI * 2,
@@ -46,17 +67,23 @@ const SkewCards: FC<SkewCardsProps> = ({
 
   return (
     <group ref={groupRef}>
-      {cards.map((cardImg, cardIndex) => {
+      {cards.map((card, cardIndex) => {
         const rotationY = Math.PI / 2 * cardIndex + Math.PI / 2
+        // const opacity = Math.abs(scrollPosRef.current * cards.length - cardIndex) / cards.length  / cards.length * 4
+        const opacity = 1
 
         return (
           <group
+            key={cardIndex}
             rotation={[0, rotationY, 0]}
           >
             <group
-              position={[0, cardIndex, 4.5]}
+              position={[0, cardIndex * 2, 4.5]}
             >
-              <SkewCardsRenderOne pic={cardImg} />
+              <SkewCardsRenderOne
+                {...card}
+                opacity={opacity}
+              />
             </group>
           </group>
         )

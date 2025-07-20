@@ -2,8 +2,8 @@ import { FC } from 'react'
 import * as THREE from 'three'
 import { useLoader } from '@react-three/fiber'
 
-import vertShader from './_shader.vert?raw'
-import fragShader from './_shader.frag?raw'
+import vertShader from './shader.vert?raw'
+import fragShader from './shader.frag?raw'
 
 
 export type PlaneMaterialProps = {

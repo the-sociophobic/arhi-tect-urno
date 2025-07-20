@@ -8,6 +8,8 @@ uniform float uHoverProgress;
 uniform vec3 uColor;
 uniform float uColorBlend;
 
+// out vec4 fragColor;
+
 vec3 blendNormal(vec3 base, vec3 blend) {
   return blend;
 }
@@ -35,5 +37,5 @@ void main() {
   gradedTexture.r -= 0.01;
 
   vec3 color = mix(gradedTexture, grayscaleTexture, y);
-  gl_FragColor = vec4(color, uOpacity);
+  // gl_FragColor = vec4(color, uOpacity);
 }

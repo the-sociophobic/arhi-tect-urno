@@ -21,7 +21,7 @@ const SceneObjects: FC = () => {
     <ScrollControls pages={sections.length}>
       <Environment files={generatePath(envMapSource)} />
       {/* <rectAreaLight position={[0, 15, 0]} intensity={1000} width={10} height={10} /> */}
-      <pointLight position={[5, 5, 5]} intensity={5} color={'#FFFFFF'}/>
+      <pointLight position={[4, 4, 4]} intensity={50} color={'#FFFFFF'}/>
       <pointLight position={[-5, -5, 5]} intensity={10} color={'#FFFFFF'}/>
       {/* <ambientLight intensity={3} /> */}
       {/* <UniformsState /> */}
