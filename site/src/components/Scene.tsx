@@ -8,7 +8,7 @@ const Scene: FC = () => {
   return (
     <Canvas
       // orthographic
-      camera={{ zoom: 1 }}
+      camera={{ zoom: .85 }}
     >
       <SceneObjects />
     </Canvas>
