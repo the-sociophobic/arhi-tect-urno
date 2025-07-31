@@ -73,6 +73,7 @@ const MagicSphere: FC = () => {
       <ambientLight intensity={1.7} />
       <group
         rotation={[0, Math.PI, 0]}
+        scale={[.8, .8, .8]}
       >
         <group
           ref={sphereRef}

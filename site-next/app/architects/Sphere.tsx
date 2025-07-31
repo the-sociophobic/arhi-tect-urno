@@ -6,9 +6,14 @@ import ThreeScene from '../lib/components/Three/ThreeScene'
 import generatePath from '../lib/utils/generatePath'
 
 
-const Sphere: FC<{randomVideoURL: string}> = ({
-  randomVideoURL
+const Sphere: FC<{
+  randomVideoURL: string
+  customVideoURL?: string
+}> = ({
+  randomVideoURL,
+  customVideoURL
 }) => {
+  console.log(customVideoURL)
   return (
     <>
       <video
@@ -18,7 +23,7 @@ const Sphere: FC<{randomVideoURL: string}> = ({
         muted
         crossOrigin='anonymous'
       >
-        <source src={generatePath(randomVideoURL)} />
+        <source src={customVideoURL || generatePath(randomVideoURL)} />
       </video>
 
       <div className='row'>
