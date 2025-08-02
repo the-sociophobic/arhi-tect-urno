@@ -1,13 +1,13 @@
+import { FC } from 'react'
 import { connection } from 'next/server'
 
 import Sphere from './Sphere'
-import { FC } from 'react';
 
 
 export type PageProps = {
-  searchParams?: {
+  searchParams?: Promise<{
     [key: string]: string | string[] | undefined;
-  }
+  }>
 }
 
 const Page: FC<PageProps> = async ({

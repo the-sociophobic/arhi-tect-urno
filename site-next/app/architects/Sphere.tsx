@@ -23,7 +23,10 @@ const Sphere: FC<{
         muted
         crossOrigin='anonymous'
       >
-        <source src={customVideoURL || generatePath(randomVideoURL)} />
+        <source
+          src={customVideoURL || generatePath(randomVideoURL)}
+          // resource=''
+        />
       </video>
 
       <div className='row'>
