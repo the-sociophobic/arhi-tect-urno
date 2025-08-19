@@ -1,5 +1,3 @@
-import { isMobile } from 'react-device-detect'
-
 import MediaReel from '../lib/components/Three/MediaReel'
 import ThreeScene from '../lib/components/Three/ThreeScene'
 
