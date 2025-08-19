@@ -5,6 +5,7 @@ import { useScroll } from '@react-three/drei'
 import generatePath from '../../utils/generatePath'
 import { StoreContext } from '../../components/Store/StoreContext'
 import HintsRenderOne from './HintsRenderOne'
+import useMousePointerOnHover from '../../hooks/useMousePointerOnHover'
 
 
 const Hints: FC = () => {
@@ -62,6 +63,7 @@ const Hints: FC = () => {
       rotation: Math.PI / 2
     },
   ]
+  const mousePointerProps = useMousePointerOnHover()
 
   return (
     <group
@@ -69,6 +71,7 @@ const Hints: FC = () => {
       position={[0, .25, 0]}
       scale={[2, 2, 2]}
       onClick={onClick}
+      {...mousePointerProps}
     >
       {hints.map(hint =>
         <HintsRenderOne

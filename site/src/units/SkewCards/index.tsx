@@ -33,11 +33,14 @@ const SkewCards: FC<SkewCardsProps> = ({
     const sectionData = contentful?.pages.find(page => page.url === section.contentfulKey)
     // const entries = contentful[section.contentfulKey as 'materials' | 'medias' | 'architects']
     const entries = sectionData?.cards || []
-    const imageKey = section.contentfulKey === 'medias' ? 'thumbnail' : 'avatar'
-    const cards = entries.slice(0, 4).map(entry => ({
-      url: entry.url,
-      img: ((entry as any)[imageKey] as ContentfulFile)?.file.url || contentful.architects[1].avatar.file.url
-    }))
+    const cards = entries.slice(0, 4).map(entry => {
+      const imageKey = (entry as any).type === 'media' ? 'thumbnail' : 'avatar'
+
+      return {
+        url: entry.url,
+        img: ((entry as any)[imageKey] as ContentfulFile)?.file.url || contentful.architects[1].avatar.file.url
+      }
+    })
     const cards4 = [
       ...cards,
       ...emptyCards4.slice(-cards.length),
