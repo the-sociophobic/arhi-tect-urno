@@ -21,15 +21,16 @@ const GlossySphere: FC = () => {
       <mesh
         args={[geometry]}
         scale={1.5}
+        rotation={[0, 0, Math.PI / 2.8]}
       >
         <meshStandardMaterial
           map={texture}
           transparent={true}
-          alphaTest={.5}
-          opacity={.7}
+          // alphaTest={.5}
+          // opacity={.7}
         />
       </mesh>
-      <mesh
+      {/* <mesh
         args={[geometry]}
         scale={1.501}
         position={[0, 0, -.05]}
@@ -42,7 +43,7 @@ const GlossySphere: FC = () => {
           roughness={.4}
           transmission={.5}
         />
-      </mesh>
+      </mesh> */}
 
       {/* <Sphere
         scale={[2.5, 2.5, 2.5]}

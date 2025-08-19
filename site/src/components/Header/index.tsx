@@ -20,10 +20,10 @@ const Header: FC = observer(() => {
       <div className='container'>
         <div className='row'>
 
-          <div className='col-2 desktop-only'>
-            <div className='Header__hint'>
+          <div className='col-2 d-none d-lg-block'>
+            {/* <div className='Header__hint'>
               <HintSvg />
-            </div>
+            </div> */}
           </div>
 
           <div className='col ps-md-0 ps-3'>

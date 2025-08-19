@@ -34,16 +34,19 @@ body
         @extend .flex-grow-1
         @extend .d-flex
         @extend .flex-column
-        @extend .flex-md-row
+        @extend .flex-lg-row
         @extend .align-items-start
-        @extend .align-items-md-center
+        @extend .align-items-lg-center
         @extend .justify-content-between
         &__item
+          text-transform: uppercase
           cursor: pointer
           font-size: 16px
           border-bottom: 1px solid rgba(255, 255, 255, 0)
           transition: border .3s
+          color: rgba(255, 255, 255, 0.5)
           &--selected
+            color: rgba(255, 255, 255, 1)
             border-bottom: 1px solid white
       &__logo
         margin-top: -5px
@@ -52,6 +55,24 @@ body
       position: fixed
       bottom: 0
       left: 0
+      &__title
+        font-family: 'Geologica-Medium', 'Arial', sans-serif
+        font-size: 20px
+        text-transform: uppercase
+        margin-bottom: 18px
+      &__description
+        font-size: 14px
+        margin-bottom: 25px
+      &__button
+        display: block
+        cursor: pointer
+        text-align: center
+        font-size: 12px
+        line-height: 35px
+        padding: 0 50px
+        border: 1px solid white
+        border-radius: 50px
+        margin-bottom: 32px
     .content
       position: relative
       width: 100vw

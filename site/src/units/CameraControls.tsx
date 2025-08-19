@@ -9,7 +9,7 @@ import { isMobile } from 'react-device-detect'
 
 
 const CAMERA_INITIAL_POSITION = new THREE.Vector3(0, .5, 7)
-const CAMERA_INITIAL_POSITION_MOBILE = new THREE.Vector3(0, 0, 12)
+const CAMERA_INITIAL_POSITION_MOBILE = new THREE.Vector3(0, 0, 9)
 const CAMERA_INITIAL_TARGET = new THREE.Vector3(0, .5, 0)
 const CAMERA_MAX_POLAR_ANGLE = Math.PI / 2 + .01
 

@@ -12,6 +12,7 @@ import ScrollHandler from './ScrollHandler'
 import GlossySphere from './GlossySphere'
 import SkewCards from './SkewCards/index'
 import useContentful from '../hooks/useContentful'
+import Hints from './Hints'
 
 
 const SceneObjects: FC = () => {
@@ -29,6 +30,7 @@ const SceneObjects: FC = () => {
       <CameraControls />
       {/* <Cards /> */}
       <GlossySphere />
+      <Hints />
       {contentful && <SkewCards contentful={contentful} />}
       <ScrollHandler />
     </ScrollControls>

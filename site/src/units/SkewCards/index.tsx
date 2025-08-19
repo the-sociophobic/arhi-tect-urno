@@ -30,12 +30,13 @@ const SkewCards: FC<SkewCardsProps> = ({
   const cards = sections.flatMap(section => {
     if (!section.contentfulKey)
       return emptyCards4
-
-    const entries = contentful[section.contentfulKey as 'materials' | 'medias' | 'architects']
+    const sectionData = contentful?.pages.find(page => page.url === section.contentfulKey)
+    // const entries = contentful[section.contentfulKey as 'materials' | 'medias' | 'architects']
+    const entries = sectionData?.cards || []
     const imageKey = section.contentfulKey === 'medias' ? 'thumbnail' : 'avatar'
     const cards = entries.slice(0, 4).map(entry => ({
       url: entry.url,
-      img: ((entry as any)[imageKey] as ContentfulFile).file.url
+      img: ((entry as any)[imageKey] as ContentfulFile)?.file.url || contentful.architects[1].avatar.file.url
     }))
     const cards4 = [
       ...cards,
@@ -54,10 +55,11 @@ const SkewCards: FC<SkewCardsProps> = ({
     if (!group)
       return
 
-    const scrollPos = scroll.range(0, 1)
+    // const scrollPos = scroll.range(0, 1)
+    const scrollPos = (scroll.range(0, 1) - .5 / sections.length) * (sections.length + 1) / sections.length
     // scrollPosRef.current = scrollPos
 
-    group.position.setY(scrollPos * 68 - 70)
+    group.position.setY(scrollPos * 96 - 93.5)
     group.rotation.set(
       group.rotation.x,
       scrollPos * cards.length / 4 * Math.PI * 2,

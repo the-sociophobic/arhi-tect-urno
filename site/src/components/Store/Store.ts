@@ -2,6 +2,7 @@ import { makeAutoObservable } from 'mobx'
 
 import { IStore } from './store.interface'
 import getScrolledDiv from '../../utils/getScrolledDiv'
+import sections from '../Header/sections'
 
 
 export class Store implements IStore {
@@ -16,11 +17,15 @@ export class Store implements IStore {
   setSectionIndex = (sectionIndex: number) => {
     this.sectionIndex = sectionIndex
   }
-  setScroll = (sectionIndex: number) => {
+  setScroll = (sectionIndex: number, pos?: number) => {
     const scrolledDiv = getScrolledDiv()
 
     if (scrolledDiv) {
-      scrolledDiv.scrollTop = scrolledDiv.clientHeight * sectionIndex
+      if (!pos) {
+        scrolledDiv.scrollTop = scrolledDiv.clientHeight * sectionIndex
+      } else {
+        scrolledDiv.scrollTop = scrolledDiv.clientHeight * pos * sections.length
+      }
     }
   }
 }

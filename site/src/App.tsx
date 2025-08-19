@@ -36,7 +36,7 @@ const AppInners: FC = observer(() => {
         <Scene />
       </div>
       <Header />
-      {/* <Footer /> */}
+      <Footer />
     </div>
   )
 })

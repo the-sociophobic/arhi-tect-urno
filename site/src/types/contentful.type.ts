@@ -61,7 +61,9 @@ export interface ContentfulMediaType extends ContentfulItemClass {
 
 export interface ContentfulPageType extends ContentfulItemClass {
   url: string
+  tildaURL: string
   title: string
+  description: string
   cards: (ContentfulArchitectType | ContentfulEmptyCardType | ContentfulMaterialType | ContentfulMediaType | ContentfulProjectType)[]
 }
 
