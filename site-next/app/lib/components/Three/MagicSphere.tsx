@@ -17,12 +17,6 @@ const texturePath = generatePath('/three/architect_main.png')
 
 const MagicSphere: FC = () => {
   const sphereRef = useRef<THREE.Mesh>(null)
-
-  useEffect(() => {
-    const video = document.getElementById('video');
-    (video as HTMLVideoElement)?.play?.()
-  }, [])
-
   let texture
 
   const video = document.getElementById('video')
@@ -73,7 +67,7 @@ const MagicSphere: FC = () => {
       <ambientLight intensity={1.7} />
       <group
         rotation={[0, Math.PI, 0]}
-        scale={[.8, .8, .8]}
+        scale={[.9, .9, .9]}
       >
         <group
           ref={sphereRef}
