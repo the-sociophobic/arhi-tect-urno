@@ -10,6 +10,7 @@ import useContentful from '../../hooks/useContentful'
 import MediaRenderOne from './MediaRenderOne'
 import useAnimation from './useAnimation'
 import useStore from '../../hooks/useStore'
+import { Vector3 } from '../../types/three.type'
 
 
 const envMapSource = generatePath('/three/studio_1k_bw.hdr')
@@ -17,7 +18,16 @@ const envMapSource = generatePath('/three/studio_1k_bw.hdr')
 const TIME_SCALE = 0.01
 
 
-const MediaReel: FC = () => {
+export type MediaReelProps = {
+  position?: Vector3
+  scale?: Vector3
+}
+
+
+const MediaReel: FC<MediaReelProps> = ({
+  position,
+  scale
+}) => {
   const groupRef = useRef<THREE.Group>(null)
   const alphaScale = useRef(1)
   const modifiedTime = useRef(0)
@@ -66,7 +76,8 @@ const MediaReel: FC = () => {
       <Environment files={envMapSource} />
       <ambientLight intensity={3} />
       <group
-        scale={[.9, .9, .9]}
+        position={position}
+        scale={scale || [.9, .9, .9]}
         rotation={[
           .3,
           0,

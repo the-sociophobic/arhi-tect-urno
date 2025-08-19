@@ -14,13 +14,16 @@ export type ThreeSceneProps = {
 const ThreeScene: React.FC<ThreeSceneProps> = ({
   children,
   className,
-  orthographic=true
+  orthographic=true,
 }) => {
   return (
     <Canvas
       orthographic={orthographic}
       camera={orthographic ?
-        { zoom: 115, position: [0, 0, 10] }
+        {
+          zoom: 115,
+          position: [0, 0, 10]
+        }
         :
         {
           zoom: 1.5,
