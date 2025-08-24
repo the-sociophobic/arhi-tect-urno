@@ -27,6 +27,7 @@ const Sphere: FC<{
         id='video'
         loop
         muted
+        playsInline
         crossOrigin='anonymous'
         onPlay={e => setVideoLoaded(true)}
       >
