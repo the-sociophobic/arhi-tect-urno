@@ -15,11 +15,13 @@ const Page: FC<PageProps> = async ({
 }) => {
   await connection()
   const customVideoURL = (await searchParams)?.video
+  const customEmpty = (await searchParams)?.empty
   const randomVideoURL = `/three/video/${1 + Math.round(Math.random() * 2)}.mp4`
 
   return <Sphere
     customVideoURL={customVideoURL as string | undefined}
     randomVideoURL={randomVideoURL}
+    customEmpty={(customEmpty as string | undefined) || '1'}
   />
 }
 

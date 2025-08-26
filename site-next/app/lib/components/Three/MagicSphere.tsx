@@ -9,19 +9,23 @@ import { Environment, Sphere } from '@react-three/drei'
 import generatePath from '../../utils/generatePath'
 import AssetRenderOne from './Asset/RenderOne'
 import { Vector3 } from '../../types/three.type'
+import HintsRenderOne from './HintsRenderOne'
 
 
 const envMapSource = generatePath('/three/studio_1k_bw.hdr')
-const texturePath = generatePath('/three/architect_main.png')
 
 
 export type MagicSphereProps = {
   loaded: boolean
+  play: () => void
+  emptyTexturePath?: string
 }
 
 
 const MagicSphere: FC<MagicSphereProps> = ({
-  loaded
+  loaded,
+  play,
+  emptyTexturePath = '/hints/empty1.jpg'
 }) => {
   const videoTexture = useMemo(() => {
     let videoTexture: any = undefined
@@ -35,7 +39,7 @@ const MagicSphere: FC<MagicSphereProps> = ({
 
     return videoTexture
   }, [loaded])
-  const emptyTexture = useLoader(THREE.TextureLoader, texturePath)
+  const emptyTexture = useLoader(THREE.TextureLoader, generatePath(emptyTexturePath))
   const texture = videoTexture || emptyTexture
 
   if (texture.wrapS && texture.wrapT && texture.repeat && texture.offset) {
@@ -76,6 +80,13 @@ const MagicSphere: FC<MagicSphereProps> = ({
       />
       {/* <Environment preset="city" /> */}
       <ambientLight intensity={1.7} />
+      {!loaded &&
+        <HintsRenderOne
+          onClick={play}
+          texture={generatePath('/hints/play.png')}
+          rotation={0}
+        />
+      }
       <group
         rotation={[0, Math.PI, 0]}
         scale={[.9, .9, .9]}

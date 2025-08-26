@@ -13,9 +13,11 @@ import playSvgSrc from '../lib/assets/images/play.svg'
 const Sphere: FC<{
   randomVideoURL: string
   customVideoURL?: string
+  customEmpty?: string
 }> = ({
   randomVideoURL,
-  customVideoURL
+  customVideoURL,
+  customEmpty
 }) => {
     const [showPlay, setShowPlay] = useState(false)
 
@@ -23,7 +25,6 @@ const Sphere: FC<{
       const video = document.getElementById('video');
       try {
         (video as HTMLVideoElement)?.play?.()
-        setShowPlay(true)
       } catch (err) {
         console.log('video error')
         console.log(err)
@@ -32,6 +33,12 @@ const Sphere: FC<{
     }, [])
 
     const [videoLoaded, setVideoLoaded] = useState(false)
+
+    const play = () => {
+      const video = document.getElementById('video');
+      (video as HTMLVideoElement)?.play?.()
+      setShowPlay(false)
+    }
 
     return (
       <>
@@ -54,21 +61,20 @@ const Sphere: FC<{
           <div className='col mb-5'>
             <div className='Architects__Three-container'>
               {/* {videoLoaded && */}
-                <ThreeScene className='Architects__Three'>
-                  <MagicSphere loaded={videoLoaded} />
-                </ThreeScene>
+              <ThreeScene className='Architects__Three'>
+                <MagicSphere
+                  loaded={videoLoaded}
+                  play={play}
+                  emptyTexturePath={`/hints/empty${customEmpty || 1}.jpg`}
+                />
+              </ThreeScene>
               {/* } */}
             </div>
           </div>
         </div>
-        {showPlay &&
+        {/* {showPlay &&
           <div
             className='position-fixed'
-            onClick={() => {
-              const video = document.getElementById('video');
-              (video as HTMLVideoElement)?.play?.()
-              setShowPlay(false)
-            }}
             style={{
               top: '50%',
               left: '50%',
@@ -82,7 +88,7 @@ const Sphere: FC<{
               alt='logo'
             />
           </div>
-        }
+        } */}
       </>
     )
   }
