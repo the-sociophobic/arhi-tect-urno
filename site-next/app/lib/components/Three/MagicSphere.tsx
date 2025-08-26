@@ -1,6 +1,6 @@
 'use client'
 
-import { FC, useEffect, useRef, useState } from 'react'
+import { FC, useEffect, useMemo, useRef, useState } from 'react'
 
 import * as THREE from 'three'
 import { RGBELoader } from 'three-stdlib'
@@ -15,18 +15,28 @@ const envMapSource = generatePath('/three/studio_1k_bw.hdr')
 const texturePath = generatePath('/three/architect_main.png')
 
 
-const MagicSphere: FC = () => {
-  const sphereRef = useRef<THREE.Mesh>(null)
-  let texture
+export type MagicSphereProps = {
+  loaded: boolean
+}
 
-  const video = document.getElementById('video')
 
-  if (video) {
-    texture = new THREE.VideoTexture((video as HTMLVideoElement)!)
-    texture.colorSpace = THREE.SRGBColorSpace
-  } else {
-    texture = useLoader(THREE.TextureLoader, texturePath)
-  }
+const MagicSphere: FC<MagicSphereProps> = ({
+  loaded
+}) => {
+  const videoTexture = useMemo(() => {
+    let videoTexture: any = undefined
+
+    if (loaded) {
+      const video = document.getElementById('video')
+
+      videoTexture = new THREE.VideoTexture((video as HTMLVideoElement)!)
+      videoTexture.colorSpace = THREE.SRGBColorSpace
+    }
+
+    return videoTexture
+  }, [loaded])
+  const emptyTexture = useLoader(THREE.TextureLoader, texturePath)
+  const texture = videoTexture || emptyTexture
 
   if (texture.wrapS && texture.wrapT && texture.repeat && texture.offset) {
     texture.wrapS = THREE.RepeatWrapping
@@ -36,9 +46,10 @@ const MagicSphere: FC = () => {
     // texture.offset.set(.05, 0)
   }
 
-
   const envMap = useLoader(RGBELoader, envMapSource)
   // envMap.mapping = THREE.EquirectangularRefractionMapping
+
+  const sphereRef = useRef<THREE.Mesh>(null)
 
   useFrame(threeState => {
     if (sphereRef.current) {

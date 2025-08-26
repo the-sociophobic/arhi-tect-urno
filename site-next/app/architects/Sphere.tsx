@@ -53,11 +53,11 @@ const Sphere: FC<{
         <div className='row'>
           <div className='col mb-5'>
             <div className='Architects__Three-container'>
-              {videoLoaded &&
+              {/* {videoLoaded && */}
                 <ThreeScene className='Architects__Three'>
-                  <MagicSphere />
+                  <MagicSphere loaded={videoLoaded} />
                 </ThreeScene>
-              }
+              {/* } */}
             </div>
           </div>
         </div>
