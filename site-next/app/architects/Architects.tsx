@@ -35,7 +35,7 @@ const Architects = () => {
               orthographic={false}
               className='Architects__Three'
             >
-              <MagicSphere />
+              <MagicSphere loaded={false} />
             </ThreeScene>
           </div>
         </div>
