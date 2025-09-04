@@ -4,7 +4,6 @@ import { observer } from 'mobx-react-lite'
 import sections from './sections'
 import { StoreContext } from '../Store/StoreContext'
 
-import HintSvg from '../../assets/images/hint.svg'
 import LogoSvg from '../../assets/images/logo.svg'
 
 
@@ -28,14 +27,14 @@ const Header: FC = observer(() => {
 
           <div className='col ps-md-0 ps-3'>
             <div className='Header__links'>
-              {sections.map((link, linkIndex) =>
+              {sections.slice(1).map((link, linkIndex) =>
                 <div
                   key={link.label}
-                  onClick={() => setScroll(linkIndex)}
+                  onClick={() => setScroll(linkIndex + 1)}
                   className={`
                     Header__links__item
                     ${linkIndex === 0 && 'd-none'}
-                    ${linkIndex === sectionIndex && 'Header__links__item--selected'}
+                    ${linkIndex === (sectionIndex - 1) && 'Header__links__item--selected'}
                   `}
                 >
                   {link.label}

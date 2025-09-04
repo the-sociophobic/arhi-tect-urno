@@ -2,12 +2,17 @@ const sections = [
   {
     label: 'АРХИТЕКТУРНО',
     description: '2024',
-    contentfulKey: '',
+    contentfulKey: 'start',
+  },
+  {
+    label: 'АРХИТЕКТУРНО',
+    description: '2024',
+    contentfulKey: 'start',
   },
   {
     label: 'О проекте',
     description: 'В 2024 году строительный предприниматель решил создать пространство, где архитекторы могли бы говорить открыто — о профессии, среде, вызовах и смыслах.',
-    contentfulKey: '',
+    contentfulKey: 'about',
   },
   {
     label: 'Архитекторы',

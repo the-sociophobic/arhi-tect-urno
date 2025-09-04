@@ -30,7 +30,7 @@ const Footer: FC = observer(() => {
             <div className='Footer__description'>
               {sectionData?.description || 'Добро пожаловать в «Архитектурно» — медиа-платформу, выросшую на пересечении строительного бизнеса, искусства и глубоких человеческих разговоров. Далее вы увидите навигатор,  который поможет найти нужный выпуск или открыть для себя нового героя.'}
             </div>
-            <a href={sectionData?.tildaURL || 'https://kiss-graph.com'} style={{ textDecoration: 'none' }}>
+            <a href={sectionData?.tildaUrl || 'https://kiss-graph.com'} style={{ textDecoration: 'none' }}>
               <div className='Footer__button'>
                 Продолжить
               </div>

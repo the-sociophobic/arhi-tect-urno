@@ -43,11 +43,11 @@ const SkewCards: FC<SkewCardsProps> = ({
     })
     const cards4 = [
       ...cards,
-      ...emptyCards4.slice(-cards.length),
+      ...emptyCards4.slice(0, -cards.length),
     ]
-
     return cards4
   })
+  cards.reverse()
   const groupRef = useRef<THREE.Group>(null)
   const scroll = useScroll()
   // const scrollPosRef = useRef(0)
@@ -62,10 +62,10 @@ const SkewCards: FC<SkewCardsProps> = ({
     const scrollPos = (scroll.range(0, 1) - .5 / sections.length) * (sections.length + 1) / sections.length
     // scrollPosRef.current = scrollPos
 
-    group.position.setY(scrollPos * 96 - 93.5)
+    group.position.setY(scrollPos * 56 - 53.7)
     group.rotation.set(
       group.rotation.x,
-      scrollPos * cards.length / 4 * Math.PI * 2,
+      scrollPos * (cards.length / 4 + 1) * Math.PI * 2,
       group.rotation.z
     )
   })
@@ -75,7 +75,7 @@ const SkewCards: FC<SkewCardsProps> = ({
       {cards.map((card, cardIndex) => {
         const rotationY = Math.PI / 2 * cardIndex + Math.PI / 2
         // const opacity = Math.abs(scrollPosRef.current * cards.length - cardIndex) / cards.length  / cards.length * 4
-        const opacity = 1
+        const opacity = card.url === '/' ? 0 : 1
 
         return (
           <group
