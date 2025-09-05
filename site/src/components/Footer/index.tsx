@@ -10,7 +10,8 @@ import useContentful from '../../hooks/useContentful'
 const Footer: FC = observer(() => {
   const { store } = useContext(StoreContext)
   const {
-    sectionIndex
+    sectionIndex,
+    setScroll
   } = store
   const { data: contentful } = useContentful()
   const section = sections[sectionIndex]
@@ -30,7 +31,15 @@ const Footer: FC = observer(() => {
             <div className='Footer__description'>
               {sectionData?.description || 'Добро пожаловать в «Архитектурно» — медиа-платформу, выросшую на пересечении строительного бизнеса, искусства и глубоких человеческих разговоров. Далее вы увидите навигатор,  который поможет найти нужный выпуск или открыть для себя нового героя.'}
             </div>
-            <a href={sectionData?.tildaUrl || 'https://kiss-graph.com'} style={{ textDecoration: 'none' }}>
+            <a
+              href={section.contentfulKey !== 'start' && sectionData?.tildaUrl ? sectionData?.tildaUrl : undefined}
+              style={{ textDecoration: 'none' }}
+              onClick={() => {
+                if (section.contentfulKey === 'start') {
+                  setScroll(0, 0.054)
+                }
+              }}
+            >
               <div className='Footer__button'>
                 Продолжить
               </div>
